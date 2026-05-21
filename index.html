@@ -65,11 +65,10 @@ body{
 .play-btn:active{transform:translateY(3px);}
 </style>
 </head>
-<body onload="initGame()">
+<body>
 <div id="wrap">
   <div id="frame">
     <canvas id="canvas" width="854" height="1490"></canvas>
-    <svg id="aim-overlay" viewBox="0 0 854 1490" style="position:absolute;inset:0;pointer-events:none;z-index:30;"></svg>
     <div class="screen" id="screen-start">
       <h2>Bombs Drop</h2>
       <p>Aim and shoot — destroy shapes before they reach the top!</p>
@@ -84,6 +83,7 @@ body{
   </div>
 </div>
 
+<script type="text/javascript" src="./lib/phaser.min.js"></script>
 <script type="text/javascript" src="./js/game.js"></script>
 </body>
 </html>
