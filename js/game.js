@@ -1,173 +1,26 @@
-// ── CIRCLE IMAGES ──────────────────────────────────────────────────
-const CIRCLE_NAMES = {5:"blue", 4:"red", 3:"green", 2:"teal", 1:"pink"};
-const circleImgs = {};
-Object.entries(CIRCLE_NAMES).forEach(([hp, color]) => {
-  const img = new Image();
-  img.src = `gfx/board/circle_${color}.png`;
-  circleImgs[+hp] = img;
-});
-const CIRCLE_FRAMES = {
-  5: {glow:'#00e5ff'},  // blue
-  4: {glow:'#ff4444'},  // red
-  3: {glow:'#aaff00'},  // green
-  2: {glow:'#2dd4bf'},  // teal
-  1: {glow:'#ff4ddb'},  // pink
-};
+// ═══════════════════════════════════════════════════════════════
+// Bombs Drop — Phaser 3
+// ═══════════════════════════════════════════════════════════════
 
-// ── TRIANGLE IMAGES ──────────────────────────────────────────────
-const TRIANGLE_NAMES = {5:"blue", 4:"red", 3:"green", 2:"teal", 1:"pink"};
-const triangleImgs = {};
-Object.entries(TRIANGLE_NAMES).forEach(([hp, color]) => {
-  const img = new Image();
-  img.src = `gfx/board/triangle_${color}.png`;
-  triangleImgs[+hp] = img;
-});
-const TRIANGLE_FRAMES = {
-  5: {glow:'#00e5ff'},  // blue
-  4: {glow:'#ff4444'},  // red
-  3: {glow:'#aaff00'},  // green
-  2: {glow:'#2dd4bf'},  // teal
-  1: {glow:'#ff4ddb'},  // pink
-};
-
-// ── BALL IMAGE ───────────────────────────────────────────────────
-const ballImg = new Image();
-ballImg.src = 'gfx/board/ball.png';
-const ballPurpleImg = new Image();
-ballPurpleImg.src = 'gfx/board/ball_purple.png';
-
-// ── SQUARE IMAGES ──────────────────────────────────────────────────
-const SQUARE_NAMES = {5:"blue", 4:"red", 3:"green", 2:"teal", 1:"pink"};
-const squareImgs = {};
-Object.entries(SQUARE_NAMES).forEach(([hp, color]) => {
-  const img = new Image();
-  img.src = `gfx/board/square_${color}.png`;
-  squareImgs[+hp] = img;
-});
-const SQUARE_FRAMES = {
-  5: {glow:'#00e5ff'},  // blue
-  4: {glow:'#ff4444'},  // red
-  3: {glow:'#aaff00'},  // green
-  2: {glow:'#2dd4bf'},  // teal
-  1: {glow:'#ff4ddb'},  // pink
-};
-
-const boardImg = new Image();
-boardImg.src = 'gfx/board/board.png';
-const limitLineImg = new Image();
-limitLineImg.src = 'gfx/board/limitline.png';
-const bgImg = new Image();
-bgImg.src = 'gfx/Bg/bg.png';
-
-// SPARKLE VFX FRAMES (ball counter)
-const ballSparkleFrames = [];
-for(let i = 0; i < 18; i++){
-  const img = new Image();
-  img.src = `gfx/vfx/sparkle/sparkle_${String(i).padStart(2,'0')}.png`;
-  ballSparkleFrames.push(img);
-}
-
-// COLLECT VFX FRAMES
-const collectCircleFrames = [];
-for(let i = 0; i < 25; i++){
-  const img = new Image();
-  img.src = `gfx/vfx/collect/collect_circle/collect-circle_${String(i).padStart(2,'0')}.png`;
-  collectCircleFrames.push(img);
-}
-const collectSplashFrames = [];
-for(let i = 0; i < 10; i++){
-  const img = new Image();
-  img.src = `gfx/vfx/collect/collect_splash/collect-splash_${String(i).padStart(2,'0')}.png`;
-  collectSplashFrames.push(img);
-}
-
-// IMPACT VFX FRAMES
-const impactCircleFrames = [];
-for(let i = 0; i < 13; i++){
-  const img = new Image();
-  img.src = `gfx/vfx/impact/impact_circle/impact-circle_${String(i).padStart(2,'0')}.png`;
-  impactCircleFrames.push(img);
-}
-const impactSplashFrames = [];
-for(let i = 0; i < 10; i++){
-  const img = new Image();
-  img.src = `gfx/vfx/impact/impact_splash/impact-splash_${String(i).padStart(2,'0')}.png`;
-  impactSplashFrames.push(img);
-}
-const impactSparkleFrames = [];
-for(let i = 0; i < 13; i++){
-  const img = new Image();
-  img.src = `gfx/vfx/impact/impact_sparkle/impact-sparkle_${String(i).padStart(2,'0')}.png`;
-  impactSparkleFrames.push(img);
-}
-
-// BOOSTER IMAGES
-const boosterBtnImg        = new Image(); boosterBtnImg.src        = 'gfx/boosters/button.png';
-const boosterBtnPressedImg = new Image(); boosterBtnPressedImg.src = 'gfx/boosters/button_pressed.png';
-const boosterTimeImg        = new Image(); boosterTimeImg.src        = 'gfx/boosters/time_icon.png';
-const boosterTimePressedImg = new Image(); boosterTimePressedImg.src = 'gfx/boosters/time_icon_pressed.png';
-const boosterExtraImg        = new Image(); boosterExtraImg.src        = 'gfx/boosters/extra_icon.png';
-const boosterExtraPressedImg = new Image(); boosterExtraPressedImg.src = 'gfx/boosters/extra_icon_pressed.png';
-const boosterEnergyImg        = new Image(); boosterEnergyImg.src        = 'gfx/boosters/energy_icon.png';
-const boosterEnergyPressedImg = new Image(); boosterEnergyPressedImg.src = 'gfx/boosters/energy_icon_pressed.png';
-const boosterTagAddImg    = new Image(); boosterTagAddImg.src    = 'gfx/boosters/tag_add.png';
-const boosterTagNumberImg = new Image(); boosterTagNumberImg.src = 'gfx/boosters/tag_number.png';
-const collectBaseImg   = new Image(); collectBaseImg.src   = 'gfx/boosters/collect_base.png';
-const collectEnergyImg = new Image(); collectEnergyImg.src = 'gfx/boosters/collect_energy.png';
-const collectExtraImg  = new Image(); collectExtraImg.src  = 'gfx/boosters/collect_extra.png';
-const collectTimeImg   = new Image(); collectTimeImg.src   = 'gfx/boosters/collect_time.png';
-const collectGlowImg   = new Image(); collectGlowImg.src   = 'gfx/boosters/collect_glow.png';
-// Board: scaled so 613px-wide purple border fills 400px canvas width
-const BOARD_SCALE  = 1.0;
-const BOARD_W_PX   = 854;
-const BOARD_H_PX   = 1490;
-const BOARD_X_PX   = 0;
-const BOARD_Y_PX   = 0;
-// Play-field inner bounds (canvas coords) — 575x792 area starting at y=313
-const PLAY_LEFT    = 140;
-const PLAY_RIGHT   = 715;
-const PLAY_TOP     = 313;
-const PLAY_BOTTOM  = 1105;
-// Shooter circle centre — dark circle spans canvas y=220..271, centre=246
-const SHOOTER_CX   = 427;
-const SHOOTER_CY   = 248;
-const STEP_LBL_X   = 162;
-const STEP_LBL_Y   = 247;
-// Booster buttons — drawn inside canvas below play area
-const BOOSTERS = [
-  { type:'slow',    icon:()=>boosterTimeImg,   pressedIcon:()=>boosterTimePressedImg,   count:()=>puSlow,    iw:61, ih:72, cx:263, cy:1240 },
-  { type:'shatter', icon:()=>boosterExtraImg,  pressedIcon:()=>boosterExtraPressedImg,  count:()=>puShatter, iw:68, ih:60, cx:427, cy:1240 },
-  { type:'reset',   icon:()=>boosterEnergyImg, pressedIcon:()=>boosterEnergyPressedImg, count:()=>puReset,   iw:58, ih:73, cx:591, cy:1240 },
-];
-const BOOSTER_BTN = 134;
-let pressedBooster = null;
-
-// ── CANVAS ───────────────────────────────────────────────────────
-const canvas  = document.getElementById('canvas');
-const ctx     = canvas.getContext('2d');
-const aimSvg  = document.getElementById('aim-overlay');
+// ── CONSTANTS ──────────────────────────────────────────────────
+const PLAY_LEFT    = 140, PLAY_RIGHT  = 715;
+const PLAY_TOP     = 313, PLAY_BOTTOM = 1105;
+const SHOOTER_CX   = 427, SHOOTER_CY  = 248;
+const STEP_LBL_X   = 162, STEP_LBL_Y  = 247;
+const BALL_R       = 12,  SHAPE_R     = 30;
+const VISUAL_R     = 67,  MIN_SEP     = VISUAL_R * 2 + 10;
+const BASE_SPD     = 10;
+const GRAVITY      = 0.60, FRICTION   = 0.999;
+const HIT_DECAY    = 0.95, HIT_DECAY_WALL = 0.60;
+const MOVE_UP      = 160;
+const SPAWN_Y_MIN  = PLAY_BOTTOM - VISUAL_R * 2;
+const SPAWN_Y_MAX  = PLAY_BOTTOM - VISUAL_R;
+const BTN_SIZE     = 134;
 const W = 854, H = 1490;
+const BALL_START_Y = SHOOTER_CY;
+const AIM_PIVOT_Y  = BALL_START_Y + 31;
 
-// ── CONSTANTS ────────────────────────────────────────────────────
-const BALL_R      = 12;
-const BASE_SPD    = 10;
-const GRAVITY     = 0.60;
-const FRICTION    = 0.999;   // almost no friction
-const HIT_DECAY   = 0.95;    // minimal speed loss on shape hit
-const HIT_DECAY_WALL = 0.60; // significant speed loss on wall bounce
-const MAX_SPD     = 22;
-const SHAPE_R     = 30;
-const VISUAL_R    = 67;  // half of largest drawn asset (circle 133px)
-const MIN_SEP     = VISUAL_R * 2 + 10;
-const SHOOTER_X   = SHOOTER_CX;
-const SHOOTER_Y   = SHOOTER_CY;
-const BALL_START_Y = SHOOTER_CY;  // ball sits at circle centre
-const TOP_DANGER  = PLAY_TOP;
-const MOVE_UP     = 160;
-const SPAWN_Y_MIN = PLAY_BOTTOM - VISUAL_R * 2;
-const SPAWN_Y_MAX = PLAY_BOTTOM - VISUAL_R;
-
-const SHAPES = ['circle', 'square', 'triangle'];
+const SHAPES      = ['circle', 'square', 'triangle'];
 const NEON_COLORS = [
   {fill:'#1a0050', stroke:'#ff4ddb'},
   {fill:'#001a3a', stroke:'#00e5ff'},
@@ -175,1048 +28,807 @@ const NEON_COLORS = [
   {fill:'#1a0000', stroke:'#ff4444'},
   {fill:'#1a0a00', stroke:'#ff9900'},
 ];
+const HP_COLOR = {5:'blue', 4:'red', 3:'green', 2:'teal', 1:'pink'};
+const HP_FONT  = {5:40, 4:34, 3:34, 2:32, 1:32};
+const HP_OUTL  = {5:'#002e5a', 4:'#820606', 3:'#182900', 2:'#004437', 1:'#640053'};
 
-// ── STATE ────────────────────────────────────────────────────────
-let step, shapes, ball, hitFlash, splashAnims, sparkleAnims, collectCircleAnims, collectSplashAnims;
-let ballsLeft, ballsToFire;
-let ballSpeed, ballHits;
-let totalScore = 0, gameStartTime = 0;
-let gameState, overTimer, dyingShapes;
-let aimAngle;
-let puSlow, puShatter, puReset;
-let energyBoostActive = false;
-let collectiblePowerUpPending = false;
-let energyCollectable = null;
-let extraBallPowerUpPending = false;
-let extraBallCollectable = null;
-let slowTimePowerUpPending = false;
-let slowTimePowerUpStepsLeft = 0;
-let slowTimeCollectable = null;
-let shapesSliding = false, slideAmt = 0, slidedAmt = 0, slideIsSlowTime = false;
-let boosterCooldown = 0;
-let shatterBoosterExtraBalls = 0;
-let ballSparkleAnim = null;
-let animId = null, lastTime = 0;
-let bestScore = 0, bestStep = 0;
-let isVideoReady = false, gamePaused = false;
+const BOOSTERS_CFG = [
+  {type:'slow',    icon:'time-icon',    iconP:'time-icon-p',    cx:263, cy:1240, iw:61, ih:72},
+  {type:'shatter', icon:'extra-icon',   iconP:'extra-icon-p',   cx:427, cy:1240, iw:68, ih:60},
+  {type:'reset',   icon:'energy-icon',  iconP:'energy-icon-p',  cx:591, cy:1240, iw:58, ih:73},
+];
 
-function spawnEnergyCollectable(){
-  const xMin = PLAY_LEFT  + VISUAL_R;
-  const xMax = PLAY_RIGHT - VISUAL_R;
-  const yMin = SPAWN_Y_MIN;
-  const yMax = SPAWN_Y_MAX;
-  const MAX_TRIES = 500;
-  for(let attempt = 0; attempt < MAX_TRIES; attempt++){
-    const x = xMin + Math.random() * (xMax - xMin);
-    const y = yMin + Math.random() * (yMax - yMin);
-    if(shapes && shapes.some(s => !s.dead && dist(x, y, s.x, s.y) < MIN_SEP)) continue;
-    if(extraBallCollectable && !extraBallCollectable.dead && dist(x, y, extraBallCollectable.x, extraBallCollectable.y) < MIN_SEP) continue;
-    if(slowTimeCollectable && !slowTimeCollectable.dead && dist(x, y, slowTimeCollectable.x, slowTimeCollectable.y) < MIN_SEP) continue;
-    energyCollectable = { x, y, angle: Math.random() * Math.PI * 2,
-      spinSpeed: (0.008 + Math.random() * 0.008) * (Math.random() < 0.5 ? 1 : -1),
-      scale: 0, birth: Date.now(), dead: false };
-    return;
-  }
-}
-function spawnExtraBallCollectable(){
-  const xMin = PLAY_LEFT  + VISUAL_R;
-  const xMax = PLAY_RIGHT - VISUAL_R;
-  const yMin = SPAWN_Y_MIN;
-  const yMax = SPAWN_Y_MAX;
-  const MAX_TRIES = 500;
-  for(let attempt = 0; attempt < MAX_TRIES; attempt++){
-    const x = xMin + Math.random() * (xMax - xMin);
-    const y = yMin + Math.random() * (yMax - yMin);
-    if(shapes && shapes.some(s => !s.dead && dist(x, y, s.x, s.y) < MIN_SEP)) continue;
-    if(energyCollectable && !energyCollectable.dead && dist(x, y, energyCollectable.x, energyCollectable.y) < MIN_SEP) continue;
-    if(slowTimeCollectable && !slowTimeCollectable.dead && dist(x, y, slowTimeCollectable.x, slowTimeCollectable.y) < MIN_SEP) continue;
-    extraBallCollectable = { x, y, angle: Math.random() * Math.PI * 2,
-      spinSpeed: (0.008 + Math.random() * 0.008) * (Math.random() < 0.5 ? 1 : -1),
-      scale: 0, birth: Date.now(), dead: false };
-    return;
-  }
-}
+function _dist(ax,ay,bx,by){ return Math.hypot(ax-bx, ay-by); }
+function _pad(n){ return String(n).padStart(2,'0'); }
 
-function spawnSlowTimeCollectable(){
-  const xMin = PLAY_LEFT  + VISUAL_R;
-  const xMax = PLAY_RIGHT - VISUAL_R;
-  const yMin = SPAWN_Y_MIN;
-  const yMax = SPAWN_Y_MAX;
-  const MAX_TRIES = 500;
-  for(let attempt = 0; attempt < MAX_TRIES; attempt++){
-    const x = xMin + Math.random() * (xMax - xMin);
-    const y = yMin + Math.random() * (yMax - yMin);
-    if(shapes && shapes.some(s => !s.dead && dist(x, y, s.x, s.y) < MIN_SEP)) continue;
-    if(energyCollectable && !energyCollectable.dead && dist(x, y, energyCollectable.x, energyCollectable.y) < MIN_SEP) continue;
-    if(extraBallCollectable && !extraBallCollectable.dead && dist(x, y, extraBallCollectable.x, extraBallCollectable.y) < MIN_SEP) continue;
-    slowTimeCollectable = { x, y, angle: Math.random() * Math.PI * 2,
-      spinSpeed: (0.008 + Math.random() * 0.008) * (Math.random() < 0.5 ? 1 : -1),
-      scale: 0, birth: Date.now(), dead: false };
-    return;
-  }
-}
+// ── SCENE ──────────────────────────────────────────────────────
+class GameScene extends Phaser.Scene {
+  constructor(){ super({key:'GameScene'}); }
 
-// ── START ────────────────────────────────────────────────────────
-function startGame() {
-  step=1; shapes=[]; ball=null; activeBalls=[]; hitFlash=[]; splashAnims=[]; sparkleAnims=[]; collectCircleAnims=[]; collectSplashAnims=[]; ballsLeft=1; ballsToFire=0;
-  ballHits=0;
-  puSlow=0; puShatter=0; puReset=0; aimAngle=null; gameState='idle'; overTimer=0; dyingShapes=[]; collectiblePowerUpPending=false; extraBallPowerUpPending=false; extraBallCollectable=null; slowTimePowerUpPending=false; slowTimePowerUpStepsLeft=0; slowTimeCollectable=null; shapesSliding=false; slideAmt=0; slidedAmt=0; slideIsSlowTime=false; boosterCooldown=0; shatterBoosterExtraBalls=0;
-  totalScore = 0; gameStartTime = Date.now();
-  hide('screen-start'); hide('screen-over');
-  updateHeader();
-  spawnInitialShapes();
-  try { gamee.gameStart(); } catch(e) {}
-  try { gamee.logEvent("game_start", "step_1"); } catch(e) {}
-  cancelAnimationFrame(animId);
-  lastTime=0;
-  animId=requestAnimationFrame(loop);
-}
-function hide(id){ document.getElementById(id).classList.remove('show'); }
-function show(id){ document.getElementById(id).classList.add('show'); }
-function updateHeader(){ /* step drawn on canvas */ }
+  // ── PRELOAD ──────────────────────────────────────────────────
+  preload(){
+    this.load.image('bg',          'gfx/Bg/bg.png');
+    this.load.image('board',       'gfx/board/board.png');
+    this.load.image('limitline',   'gfx/board/limitline.png');
+    this.load.image('ball',        'gfx/board/ball.png');
+    this.load.image('ball-purple', 'gfx/board/ball_purple.png');
 
-// ── SPAWNING ─────────────────────────────────────────────────────
-function calcMaxHp(s){
-  return s;
-}
-function calcCount(s){
-  if(s <= 6) return 2 + Math.floor(s / 2) + Math.floor(Math.random() * 2);
-  return 5 + Math.min(s - 6, 5) + Math.floor(Math.random() * 3);
-}
-
-function spawnInitialShapes(){
-  placeShapes(calcCount(step), calcMaxHp(step), SPAWN_Y_MIN, SPAWN_Y_MAX);
-}
-
-function spawnNewRow(){
-  const count = calcCount(step);
-  const maxHp = calcMaxHp(step);
-  const live = (shapes||[]).filter(s => !s.dead);
-  const lowestY = live.length > 0 ? Math.max(...live.map(s => s.y)) : SPAWN_Y_MIN;
-  const yMin = Math.min(lowestY + MIN_SEP, SPAWN_Y_MAX);
-  placeShapes(count, maxHp, yMin, SPAWN_Y_MAX);
-}
-
-function makeShape(x, y, type, color, hp){
-  const finalHp = Math.max(hp, 1);
-  return {x, y, type, color, hp: finalHp, maxHp: finalHp, flash: 0, shake: 0, dead: false, scale: 0,
-          birth: Date.now(), angle: Math.random()*Math.PI*2,
-          spinSpeed: (0.008 + Math.random()*0.008) * (Math.random()<0.5?1:-1)};
-}
-
-function placeShapes(count, maxHp, yMin, yMax){
-  const MAX_TRIES = 500;
-  let placed = 0;
-  for(let attempt = 0; attempt < MAX_TRIES && placed < count; attempt++){
-    const x = PLAY_LEFT + VISUAL_R + Math.random() * Math.max(0, PLAY_RIGHT - PLAY_LEFT - VISUAL_R * 2);
-    const y = yMin + Math.random() * Math.max(1, yMax - yMin);
-    if(shapes.some(s => !s.dead && dist(x, y, s.x, s.y) < MIN_SEP)) continue;
-    if(energyCollectable && !energyCollectable.dead && dist(x, y, energyCollectable.x, energyCollectable.y) < MIN_SEP) continue;
-    if(extraBallCollectable && !extraBallCollectable.dead && dist(x, y, extraBallCollectable.x, extraBallCollectable.y) < MIN_SEP) continue;
-    if(slowTimeCollectable && !slowTimeCollectable.dead && dist(x, y, slowTimeCollectable.x, slowTimeCollectable.y) < MIN_SEP) continue;
-    const type  = SHAPES[Math.floor(Math.random() * SHAPES.length)];
-    const color = NEON_COLORS[Math.floor(Math.random() * NEON_COLORS.length)];
-    const hp    = maxHp === 1 ? (Math.random() < 0.12 ? 2 : 1) : 1 + Math.floor(Math.random() * maxHp);
-    shapes.push(makeShape(x, y, type, color, hp));
-    placed++;
-  }
-}
-
-// ── INPUT ────────────────────────────────────────────────────────
-canvas.addEventListener('mousemove',  e => onAim(getPos(e)));
-canvas.addEventListener('touchmove',  e => { e.preventDefault(); onAim(getPos(e.touches[0])); }, {passive:false});
-canvas.addEventListener('mousedown',  e => { const pos = getPos(e); const half = BOOSTER_BTN/2; for(const b of BOOSTERS){ if(pos.x >= b.cx-half && pos.x <= b.cx+half && pos.y >= b.cy-half && pos.y <= b.cy+half){ pressedBooster = b.type; useBooster(b.type); return; } } });
-canvas.addEventListener('mouseup',    () => { pressedBooster = null; });
-canvas.addEventListener('touchstart', e => { const pos = getPos(e.touches[0]); const half = BOOSTER_BTN/2; for(const b of BOOSTERS){ if(pos.x >= b.cx-half && pos.x <= b.cx+half && pos.y >= b.cy-half && pos.y <= b.cy+half){ pressedBooster = b.type; useBooster(b.type); return; } } }, {passive:true});
-canvas.addEventListener('click',      e => handleCanvasClick(getPos(e)));
-canvas.addEventListener('touchend',   e => { e.preventDefault(); pressedBooster = null; handleCanvasClick(getPos(e.changedTouches[0])); }, {passive:false});
-
-function getPos(e){
-  const r = canvas.getBoundingClientRect();
-  return {x: e.clientX - r.left, y: e.clientY - r.top};
-}
-const AIM_PIVOT_Y = BALL_START_Y + 31;
-function onAim({x, y}){
-  if(gameState !== 'idle' && gameState !== 'aiming') return;
-  const dx = x - SHOOTER_X, dy = y - AIM_PIVOT_Y;
-  if(dy < 15) return;
-  aimAngle = Math.atan2(dy, dx); gameState = 'aiming';
-  drawAimLine(aimAngle);
-}
-function onShoot({x, y}){
-  if(gameState !== 'idle' && gameState !== 'aiming') return;
-  if(ballsLeft <= 0) return;
-  const dx = x - SHOOTER_X, dy = y - AIM_PIVOT_Y;
-  if(dy < 15) return;
-  aimAngle = Math.atan2(dy, dx); fireBall();
-}
-function handleCanvasClick(pos){
-  const half = BOOSTER_BTN / 2;
-  for(const b of BOOSTERS){
-    if(pos.x >= b.cx - half && pos.x <= b.cx + half &&
-       pos.y >= b.cy - half && pos.y <= b.cy + half) return;
-  }
-  onShoot(pos);
-}
-
-// ── AIM LINE ─────────────────────────────────────────────────────
-function drawAimLine(angle){
-  aimSvg.innerHTML = '';
-  const DOT_SPACING = 18; // fixed px between dot centers
-  const NUM_DOTS    = 7;
-  const dx = Math.cos(angle);
-  const dy = Math.sin(angle);
-  const startX = SHOOTER_X + dx * 20;
-
-  for(let i = 1; i <= NUM_DOTS; i++){
-    const px = startX + dx * i * DOT_SPACING;
-    const py = BALL_START_Y + 34 + dy * i * DOT_SPACING;
-
-    if(py > PLAY_BOTTOM) break;
-
-    const t = i / (NUM_DOTS - 1);
-    const alpha = 0.85 - t * 0.75;
-    const r = Math.max(3, (1 - t * 0.35) * 5);
-
-    const glow = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    glow.setAttribute('cx', px); glow.setAttribute('cy', py);
-    glow.setAttribute('r', r + 3);
-    glow.setAttribute('fill', `rgba(134,44,230,${(alpha * 0.25).toFixed(2)})`);
-    aimSvg.appendChild(glow);
-
-    const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    c.setAttribute('cx', px); c.setAttribute('cy', py);
-    c.setAttribute('r', r);
-    c.setAttribute('fill', `rgba(255,255,255,${alpha.toFixed(2)})`);
-    aimSvg.appendChild(c);
-  }
-}
-function clearAim(){ aimSvg.innerHTML = ''; }
-
-// ── FIRE ─────────────────────────────────────────────────────────
-function fireBall(){
-  clearAim(); gameState = 'shooting';
-  const totalBalls = ballsLeft;
-  const extraCount = shatterBoosterExtraBalls;
-  shatterBoosterExtraBalls = 0;
-  ballsLeft = 0;
-  ballsToFire = 0;
-  // Fire all balls with 500ms stagger — independent of previous ball landing
-  for(let i = 0; i < totalBalls; i++){
-    const isExtra = i >= totalBalls - extraCount;
-    setTimeout(() => launchBall(isExtra), i * 500);
-  }
-}
-
-let activeBalls = [];  // track all balls in flight
-
-function launchBall(isExtra = false){
-  ballHits = 0;
-  const b = {
-    x: SHOOTER_X, y: BALL_START_Y,
-    vx: Math.cos(aimAngle) * BASE_SPD,
-    vy: Math.sin(aimAngle) * BASE_SPD,
-    alive: true, trail: [], isExtra,
-  };
-  activeBalls.push(b);
-  ball = b;  // keep ball pointing to latest for render compat
-}
-
-// ── LOOP ─────────────────────────────────────────────────────────
-function loop(ts){
-  const dt = Math.min((ts - lastTime) / 16.67, 3);
-  lastTime = ts;
-  update(dt); render();
-  animId = requestAnimationFrame(loop);
-}
-
-function update(dt){
-  if(shapesSliding){
-    const speed = slideIsSlowTime ? 1.5 : 20;
-    const delta = Math.min(slideAmt - slidedAmt, speed * dt);
-    shapes.forEach(s => { s.y -= delta; });
-    if(energyCollectable && !energyCollectable.dead) energyCollectable.y -= delta;
-    if(extraBallCollectable && !extraBallCollectable.dead) extraBallCollectable.y -= delta;
-    if(slowTimeCollectable && !slowTimeCollectable.dead) slowTimeCollectable.y -= delta;
-    [hitFlash, splashAnims, sparkleAnims, collectCircleAnims, collectSplashAnims].forEach(arr => {
-      (arr||[]).forEach(a => { a.y -= delta; });
+    ['blue','red','green','teal','pink'].forEach(c => {
+      this.load.image(`circle-${c}`,   `gfx/board/circle_${c}.png`);
+      this.load.image(`square-${c}`,   `gfx/board/square_${c}.png`);
+      this.load.image(`triangle-${c}`, `gfx/board/triangle_${c}.png`);
     });
-    slidedAmt += delta;
-    if(slidedAmt >= slideAmt - 0.01){ shapesSliding = false; finishEndTurn(); }
+
+    this.load.image('btn',           'gfx/boosters/button.png');
+    this.load.image('btn-p',         'gfx/boosters/button_pressed.png');
+    this.load.image('time-icon',     'gfx/boosters/time_icon.png');
+    this.load.image('time-icon-p',   'gfx/boosters/time_icon_pressed.png');
+    this.load.image('extra-icon',    'gfx/boosters/extra_icon.png');
+    this.load.image('extra-icon-p',  'gfx/boosters/extra_icon_pressed.png');
+    this.load.image('energy-icon',   'gfx/boosters/energy_icon.png');
+    this.load.image('energy-icon-p', 'gfx/boosters/energy_icon_pressed.png');
+    this.load.image('tag-add',       'gfx/boosters/tag_add.png');
+    this.load.image('collect-base',  'gfx/boosters/collect_base.png');
+    this.load.image('collect-energy','gfx/boosters/collect_energy.png');
+    this.load.image('collect-extra', 'gfx/boosters/collect_extra.png');
+    this.load.image('collect-time',  'gfx/boosters/collect_time.png');
+    this.load.image('collect-glow',  'gfx/boosters/collect_glow.png');
+
+    for(let i=0;i<18;i++) this.load.image(`sp-${i}`,  `gfx/vfx/sparkle/sparkle_${_pad(i)}.png`);
+    for(let i=0;i<25;i++) this.load.image(`cc-${i}`,  `gfx/vfx/collect/collect_circle/collect-circle_${_pad(i)}.png`);
+    for(let i=0;i<10;i++) this.load.image(`cs-${i}`,  `gfx/vfx/collect/collect_splash/collect-splash_${_pad(i)}.png`);
+    for(let i=0;i<13;i++) this.load.image(`ic-${i}`,  `gfx/vfx/impact/impact_circle/impact-circle_${_pad(i)}.png`);
+    for(let i=0;i<10;i++) this.load.image(`is-${i}`,  `gfx/vfx/impact/impact_splash/impact-splash_${_pad(i)}.png`);
+    for(let i=0;i<13;i++) this.load.image(`isp-${i}`, `gfx/vfx/impact/impact_sparkle/impact-sparkle_${_pad(i)}.png`);
   }
 
-  if(shapes) shapes.forEach(s => {
-    if(!s.dead){ s.scale = Math.min(1, s.scale + dt * 0.06); s.angle = (s.angle||0) + (s.spinSpeed||0.003) * dt; }
-    if(s.flash > 0) s.flash = Math.max(0, s.flash - dt * 0.1);
-    if(s.shake > 0) s.shake = Math.max(0, s.shake - dt * 0.15);
-  });
-  if(energyCollectable && !energyCollectable.dead){
-    energyCollectable.scale = Math.min(1, energyCollectable.scale + dt * 0.06);
-    energyCollectable.angle += energyCollectable.spinSpeed * dt;
+  // ── CREATE ───────────────────────────────────────────────────
+  create(){
+    // Play-area clip mask (shared by shapes, collectibles, VFX)
+    const maskGfx = this.make.graphics({add:false});
+    maskGfx.fillStyle(0xffffff);
+    maskGfx.fillRoundedRect(PLAY_LEFT, PLAY_TOP - 30, PLAY_RIGHT - PLAY_LEFT, PLAY_BOTTOM - PLAY_TOP + 30, 20);
+    this._mask = maskGfx.createGeometryMask();
+
+    // Static background layers
+    this.add.image(W/2, H/2, 'bg').setDisplaySize(W, H).setDepth(0);
+    this.add.image(0, 0, 'board').setOrigin(0,0).setDisplaySize(W, H).setDepth(1);
+    this.add.image(Math.round((W-563)/2) + 281, PLAY_TOP + 4, 'limitline')
+        .setDisplaySize(563, 8).setDepth(2);
+
+    // Aim line graphics
+    this._aimGfx = this.add.graphics().setDepth(8);
+
+    // Resting ball
+    this._restingBall = this.add.image(SHOOTER_CX, SHOOTER_CY, 'ball')
+        .setDisplaySize(40,40).setDepth(10);
+
+    this._buildHUD();
+    this._buildBoosters();
+    this._setupInput();
+    this._resetState();
+    this._initGamee();
+
+    // Expose startGame for the HTML button
+    window.startGame = () => this._startGame();
   }
-  if(extraBallCollectable && !extraBallCollectable.dead){
-    extraBallCollectable.scale = Math.min(1, extraBallCollectable.scale + dt * 0.06);
-    extraBallCollectable.angle += extraBallCollectable.spinSpeed * dt;
+
+  // ── HUD ──────────────────────────────────────────────────────
+  _buildHUD(){
+    const stroke = { stroke:'#4d0181', strokeThickness:8 };
+    const base   = { fontFamily:"'Oxanium',sans-serif", fontStyle:'600' };
+
+    this._stepLabel = this.add.text(STEP_LBL_X, STEP_LBL_Y, 'STEP', {
+      ...base, ...stroke, fontSize:'27px', color:'#e9cbff'
+    }).setOrigin(0,0.5).setDepth(20);
+
+    this._stepNum = this.add.text(STEP_LBL_X+72, STEP_LBL_Y, '01', {
+      ...base, ...stroke, fontSize:'32px', color:'#c479fd'
+    }).setOrigin(0,0.5).setDepth(20);
+
+    this._ballX = this.add.text(SHOOTER_CX+35, SHOOTER_CY-10, 'x', {
+      ...base, fontSize:'18px', color:'#e0edf6', stroke:'#210041', strokeThickness:8
+    }).setOrigin(0,1).setDepth(20);
+
+    this._ballN = this.add.text(SHOOTER_CX+35+14, SHOOTER_CY-10, '1', {
+      ...base, fontSize:'25px', color:'#e0edf6', stroke:'#210041', strokeThickness:8
+    }).setOrigin(0,1).setDepth(20);
+
+    this._sparkleImg = this.add.image(SHOOTER_CX+50, SHOOTER_CY-22, 'sp-0')
+        .setScale(1.5).setVisible(false).setDepth(20);
   }
-  if(slowTimeCollectable && !slowTimeCollectable.dead){
-    slowTimeCollectable.scale = Math.min(1, slowTimeCollectable.scale + dt * 0.06);
-    slowTimeCollectable.angle += slowTimeCollectable.spinSpeed * dt;
+
+  // ── BOOSTERS ─────────────────────────────────────────────────
+  _buildBoosters(){
+    this._boosterObjs = BOOSTERS_CFG.map(cfg => {
+      const half = BTN_SIZE/2;
+      const btn  = this.add.image(cfg.cx, cfg.cy, 'btn').setDisplaySize(BTN_SIZE,BTN_SIZE).setDepth(20).setInteractive();
+      const icon = this.add.image(cfg.cx, cfg.cy, cfg.icon).setDepth(21);
+      const tag  = this.add.image(cfg.cx+half, cfg.cy-half, 'tag-add').setDepth(21).setOrigin(1,0);
+      btn.on('pointerdown', () => { this._pressedBooster = cfg.type; this._useBooster(cfg.type); this._syncBoosters(); });
+      btn.on('pointerup',   () => { this._pressedBooster = null; this._syncBoosters(); });
+      return {cfg, btn, icon, tag};
+    });
   }
-  if(hitFlash) hitFlash = hitFlash.filter(h => { h.elapsed += dt; return h.elapsed < 30; });
-  if(splashAnims) splashAnims = splashAnims.filter(a => { a.elapsed += dt; return a.elapsed < 20; });
-  if(collectCircleAnims) collectCircleAnims = collectCircleAnims.filter(a => { a.elapsed += dt; return a.elapsed < 50; });
-  if(collectSplashAnims) collectSplashAnims = collectSplashAnims.filter(a => { a.elapsed += dt; return a.elapsed < 20; });
-  if(sparkleAnims) sparkleAnims = sparkleAnims.filter(a => { a.elapsed += dt; return a.elapsed < 15; });
-  if(ballSparkleAnim){ ballSparkleAnim.elapsed += dt; if(ballSparkleAnim.elapsed >= 36) ballSparkleAnim = null; }
-  if(gameState === 'dying'){
-    overTimer -= dt;
-    if(overTimer <= 0){
-      gameState = 'over';
-      document.getElementById('over-step').textContent = 'Step ' + String(step).padStart(2,'0');
-      show('screen-over');
-      saveProgress();
-      try { gamee.logEvent("game_over", totalScore + "," + step); } catch(e) {}
-      ensureRewardedAdButton();
-      try { gamee.gameOver(); } catch(e) {}
+
+  _syncBoosters(){
+    for(const b of this._boosterObjs){
+      const pressed = b.cfg.type === this._pressedBooster;
+      b.btn.setTexture(pressed ? 'btn-p' : 'btn');
+      b.icon.setTexture(pressed ? b.cfg.iconP : b.cfg.icon);
+      b.icon.setY(pressed ? b.cfg.cy+6 : b.cfg.cy);
+      const dim = this._boosterCooldown > 0 && !pressed;
+      b.btn.setAlpha(dim ? 0.45 : 1);
+      b.icon.setAlpha(dim ? 0.45 : 1);
     }
   }
 
-  // Process all active balls
-  if(activeBalls && activeBalls.length > 0){
-    activeBalls = activeBalls.filter(b => b.alive);
-    const shapeSnap = (shapes || []).slice();
+  // ── INPUT ────────────────────────────────────────────────────
+  _setupInput(){
+    this.input.on('pointermove', ptr => this._onAim(ptr.x, ptr.y));
+    this.input.on('pointerdown', ptr => {
+      // Booster hit-test before shoot
+      const half = BTN_SIZE/2;
+      for(const b of BOOSTERS_CFG){
+        if(Math.abs(ptr.x-b.cx)<=half && Math.abs(ptr.y-b.cy)<=half){
+          this._pressedBooster = b.type;
+          this._useBooster(b.type);
+          this._syncBoosters();
+          return;
+        }
+      }
+      this._onShoot(ptr.x, ptr.y);
+    });
+    this.input.on('pointerup', () => { this._pressedBooster = null; this._syncBoosters(); });
+  }
 
-    activeBalls.forEach(b => {
-      b.trail.push({x: b.x, y: b.y});
-      if(b.trail.length > 9) b.trail.shift();
+  _onAim(x, y){
+    if(this._gameState !== 'idle' && this._gameState !== 'aiming') return;
+    const dy = y - AIM_PIVOT_Y;
+    if(dy < 15) return;
+    this._aimAngle = Math.atan2(dy, x - SHOOTER_CX);
+    this._gameState = 'aiming';
+    this._drawAim(this._aimAngle);
+  }
 
-      b.vy += (energyBoostActive ? 0.90 : GRAVITY) * dt;
+  _onShoot(x, y){
+    if(this._gameState !== 'idle' && this._gameState !== 'aiming') return;
+    if(this._ballsLeft <= 0) return;
+    const dy = y - AIM_PIVOT_Y;
+    if(dy < 15) return;
+    this._aimAngle = Math.atan2(dy, x - SHOOTER_CX);
+    this._fireBall();
+  }
+
+  _drawAim(angle){
+    this._aimGfx.clear();
+    const NUM=7, SPACING=18;
+    const dx=Math.cos(angle), dy=Math.sin(angle);
+    const sx=SHOOTER_CX + dx*20;
+    for(let i=1;i<=NUM;i++){
+      const px=sx+dx*i*SPACING, py=BALL_START_Y+34+dy*i*SPACING;
+      if(py>PLAY_BOTTOM) break;
+      const t=i/(NUM-1), alpha=0.85-t*0.75, r=Math.max(3,(1-t*0.35)*5);
+      this._aimGfx.fillStyle(0x862ae6, alpha*0.25);
+      this._aimGfx.fillCircle(px, py, r+3);
+      this._aimGfx.fillStyle(0xffffff, alpha);
+      this._aimGfx.fillCircle(px, py, r);
+    }
+  }
+
+  // ── STATE RESET ──────────────────────────────────────────────
+  _resetState(){
+    this._step                      = 1;
+    this._shapes                    = [];
+    this._activeBalls               = [];
+    this._gameState                 = 'idle';
+    this._ballsLeft                 = 1;
+    this._ballsToFire               = 0;
+    this._ballHits                  = 0;
+    this._totalScore                = 0;
+    this._gameStartTime             = 0;
+    this._overTimer                 = 0;
+    this._aimAngle                  = null;
+    this._energyBoostActive         = false;
+    this._collectiblePowerUpPending = false;
+    this._extraBallPowerUpPending   = false;
+    this._slowTimePowerUpPending    = false;
+    this._slowTimePowerUpStepsLeft  = 0;
+    this._shapesSliding             = false;
+    this._slideAmt                  = 0;
+    this._slidedAmt                 = 0;
+    this._slideIsSlowTime           = false;
+    this._boosterCooldown           = 0;
+    this._shatterBoosterExtraBalls  = 0;
+    this._pressedBooster            = null;
+    this._energyCollectable         = null;
+    this._extraBallCollectable      = null;
+    this._slowTimeCollectable       = null;
+    this._gamePaused                = false;
+    this._sparkleElapsed            = -1;
+    this._bestScore                 = this._bestScore || 0;
+    this._bestStep                  = this._bestStep  || 0;
+    this._isVideoReady              = false;
+  }
+
+  // ── START ────────────────────────────────────────────────────
+  _startGame(){
+    this._destroyAllShapes();
+    this._destroyAllBalls();
+    this._destroyCollectable('_energyCollectable');
+    this._destroyCollectable('_extraBallCollectable');
+    this._destroyCollectable('_slowTimeCollectable');
+    this._aimGfx.clear();
+
+    const savedBest = { score: this._bestScore, step: this._bestStep };
+    this._resetState();
+    this._bestScore = savedBest.score;
+    this._bestStep  = savedBest.step;
+
+    this._totalScore    = 0;
+    this._gameStartTime = Date.now();
+    this._gameState     = 'idle';
+
+    this._spawnInitialShapes();
+    this._updateHUD();
+
+    document.getElementById('screen-start').classList.remove('show');
+    document.getElementById('screen-over').classList.remove('show');
+
+    try { gamee.gameStart(); } catch(e) {}
+    try { gamee.logEvent("game_start","step_1"); } catch(e) {}
+  }
+
+  // ── PHASER UPDATE ────────────────────────────────────────────
+  update(time, delta){
+    if(this._gamePaused) return;
+    const dt = Math.min(delta/16.67, 3);
+
+    this._updateSlide(dt);
+    this._updateShapeData(dt);
+    this._updateCollectables(dt);
+    this._updateBalls(dt);
+    this._updateDying(dt);
+    this._syncShapes();
+    this._updateHUD();
+    this._updateSparkle(dt);
+    this._syncBoosters();
+    this._updateRestingBall();
+  }
+
+  // ── SLIDE ────────────────────────────────────────────────────
+  _updateSlide(dt){
+    if(!this._shapesSliding) return;
+    const speed = this._slideIsSlowTime ? 1.5 : 20;
+    const delta = Math.min(this._slideAmt - this._slidedAmt, speed*dt);
+
+    for(const s of this._shapes) s.y -= delta;
+    this._slideCollectable(this._energyCollectable, delta);
+    this._slideCollectable(this._extraBallCollectable, delta);
+    this._slideCollectable(this._slowTimeCollectable, delta);
+
+    this._slidedAmt += delta;
+    if(this._slidedAmt >= this._slideAmt - 0.01){
+      this._shapesSliding = false;
+      this._finishEndTurn();
+    }
+  }
+
+  _slideCollectable(c, delta){
+    if(!c || c.dead) return;
+    c.y -= delta;
+    c._glow.y -= delta;
+    c._base.y -= delta;
+    c._icon.y -= delta;
+  }
+
+  // ── SHAPE DATA ───────────────────────────────────────────────
+  _updateShapeData(dt){
+    for(const s of this._shapes){
+      if(!s.dead){
+        s.scale = Math.min(1, s.scale + dt*0.06);
+        s.angle += s.spinSpeed * dt;
+      }
+      if(s.flash > 0) s.flash = Math.max(0, s.flash - dt*0.1);
+      if(s.shake > 0) s.shake = Math.max(0, s.shake - dt*0.15);
+    }
+  }
+
+  _syncShapes(){
+    const toRemove = [];
+    for(const s of this._shapes){
+      if(s.dead){
+        if(s._spr){ s._spr.destroy(); s._spr=null; }
+        if(s._txt){ s._txt.destroy(); s._txt=null; }
+        toRemove.push(s);
+        continue;
+      }
+      if(!s._spr) continue;
+
+      const shakeAmt = s.shake * 6;
+      const sx = shakeAmt>0 ? (Math.random()-0.5)*shakeAmt*2 : 0;
+      const sy = shakeAmt>0 ? (Math.random()-0.5)*shakeAmt*2 : 0;
+      s._spr.setPosition(s.x+sx, s.y+sy).setRotation(s.angle).setScale(s.scale)
+            .setAlpha(s.flash>0.4 ? 0.82 : 1);
+
+      // Update texture if HP changed colour tier
+      const hpKey = Math.max(1, Math.min(5, s.hp));
+      const wantTex = `${s.type}-${HP_COLOR[hpKey]}`;
+      if(s._spr.texture.key !== wantTex) s._spr.setTexture(wantTex);
+
+      // HP text (always upright at shape centre)
+      if(s._txt){
+        const fs = s.hp>5 ? 28 : HP_FONT[hpKey];
+        if(parseInt(s._txt.style.fontSize) !== fs){
+          s._txt.setFontSize(`${fs}px`).setStroke(HP_OUTL[hpKey], Math.round(fs*0.15));
+        }
+        s._txt.setText(String(s.hp)).setPosition(s.x, s.y).setScale(1/Math.max(s.scale, 0.01));
+      }
+    }
+    for(const s of toRemove){
+      this._shapes.splice(this._shapes.indexOf(s), 1);
+    }
+  }
+
+  // ── COLLECTABLES ─────────────────────────────────────────────
+  _updateCollectables(dt){
+    this._tickCollectable(this._energyCollectable);
+    this._tickCollectable(this._extraBallCollectable);
+    this._tickCollectable(this._slowTimeCollectable);
+  }
+
+  _tickCollectable(c){
+    if(!c || c.dead) return;
+    c.scale = Math.min(1, c.scale + 0.06);
+    c.angle += c.spinSpeed;
+    const t    = Date.now();
+    const pulse = 0.95 + 0.05*Math.sin(t/400);
+    const s    = c.scale * pulse;
+    c._glow.setScale(s).setAlpha(0.6 + 0.4*Math.sin(t/400));
+    c._base.setScale(s).setRotation(c.angle);
+    c._icon.setScale(s);
+  }
+
+  _spawnCollectable(iconKey){
+    for(let i=0; i<500; i++){
+      const x = PLAY_LEFT+VISUAL_R + Math.random()*(PLAY_RIGHT-PLAY_LEFT-VISUAL_R*2);
+      const y = SPAWN_Y_MIN + Math.random()*(SPAWN_Y_MAX-SPAWN_Y_MIN);
+      if(this._shapes.some(s=>!s.dead && _dist(x,y,s.x,s.y)<MIN_SEP)) continue;
+      if(this._energyCollectable    && !this._energyCollectable.dead    && _dist(x,y,this._energyCollectable.x,   this._energyCollectable.y)   <MIN_SEP) continue;
+      if(this._extraBallCollectable && !this._extraBallCollectable.dead && _dist(x,y,this._extraBallCollectable.x,this._extraBallCollectable.y)<MIN_SEP) continue;
+      if(this._slowTimeCollectable  && !this._slowTimeCollectable.dead  && _dist(x,y,this._slowTimeCollectable.x, this._slowTimeCollectable.y) <MIN_SEP) continue;
+
+      const glow = this.add.image(x,y,'collect-glow').setAlpha(0.6).setScale(0).setDepth(5).setMask(this._mask);
+      const base = this.add.image(x,y,'collect-base').setScale(0).setDepth(5).setMask(this._mask);
+      const icon = this.add.image(x,y,iconKey).setScale(0).setDepth(5).setMask(this._mask);
+      return { x, y, scale:0, angle:Math.random()*Math.PI*2,
+               spinSpeed:(0.008+Math.random()*0.008)*(Math.random()<0.5?1:-1),
+               dead:false, _glow:glow, _base:base, _icon:icon };
+    }
+    return null;
+  }
+
+  _spawnEnergyCollectable(){
+    this._energyCollectable    = this._spawnCollectable('collect-energy');
+  }
+  _spawnExtraBallCollectable(){
+    this._extraBallCollectable = this._spawnCollectable('collect-extra');
+  }
+  _spawnSlowTimeCollectable(){
+    this._slowTimeCollectable  = this._spawnCollectable('collect-time');
+  }
+
+  _destroyCollectable(key){
+    const c = this[key];
+    if(!c) return;
+    if(c._glow) c._glow.destroy();
+    if(c._base) c._base.destroy();
+    if(c._icon) c._icon.destroy();
+    this[key] = null;
+  }
+
+  _killCollectable(key){
+    const c = this[key];
+    if(!c || c.dead) return;
+    c.dead = true;
+    this._destroyCollectable(key);
+  }
+
+  // ── SPAWNING ─────────────────────────────────────────────────
+  _calcMaxHp(s){ return s; }
+
+  _calcCount(s){
+    if(s<=6) return 2 + Math.floor(s/2) + Math.floor(Math.random()*2);
+    return 5 + Math.min(s-6,5) + Math.floor(Math.random()*3);
+  }
+
+  _makeShape(x, y, type, color, hp){
+    const finalHp = Math.max(hp,1);
+    const hpKey   = Math.max(1, Math.min(5,finalHp));
+    const fs      = finalHp>5 ? 28 : HP_FONT[hpKey];
+
+    const spr = this.add.image(x, y, `${type}-${HP_COLOR[hpKey]}`)
+        .setOrigin(0.5,0.5).setScale(0).setDepth(5).setMask(this._mask);
+
+    const txt = this.add.text(x, y, String(finalHp), {
+      fontFamily:"'Oxanium',sans-serif", fontStyle:'600',
+      fontSize:`${fs}px`, color:'#ffffff',
+      stroke:HP_OUTL[hpKey], strokeThickness:Math.round(fs*0.15)
+    }).setOrigin(0.5,0.5).setDepth(6).setMask(this._mask);
+
+    return { x, y, type, color, hp:finalHp, maxHp:finalHp,
+             flash:0, shake:0, dead:false, scale:0,
+             angle:Math.random()*Math.PI*2,
+             spinSpeed:(0.008+Math.random()*0.008)*(Math.random()<0.5?1:-1),
+             _spr:spr, _txt:txt };
+  }
+
+  _placeShapes(count, maxHp, yMin, yMax){
+    const MAX_TRIES = 500;
+    let placed = 0;
+    for(let attempt=0; attempt<MAX_TRIES && placed<count; attempt++){
+      const x = PLAY_LEFT+VISUAL_R + Math.random()*Math.max(0,PLAY_RIGHT-PLAY_LEFT-VISUAL_R*2);
+      const y = yMin + Math.random()*Math.max(1,yMax-yMin);
+      if(this._shapes.some(s=>!s.dead && _dist(x,y,s.x,s.y)<MIN_SEP)) continue;
+      if(this._energyCollectable    && !this._energyCollectable.dead    && _dist(x,y,this._energyCollectable.x,   this._energyCollectable.y)   <MIN_SEP) continue;
+      if(this._extraBallCollectable && !this._extraBallCollectable.dead && _dist(x,y,this._extraBallCollectable.x,this._extraBallCollectable.y)<MIN_SEP) continue;
+      if(this._slowTimeCollectable  && !this._slowTimeCollectable.dead  && _dist(x,y,this._slowTimeCollectable.x, this._slowTimeCollectable.y) <MIN_SEP) continue;
+      const type  = SHAPES[Math.floor(Math.random()*SHAPES.length)];
+      const color = NEON_COLORS[Math.floor(Math.random()*NEON_COLORS.length)];
+      const hp    = maxHp===1 ? (Math.random()<0.12?2:1) : 1+Math.floor(Math.random()*maxHp);
+      this._shapes.push(this._makeShape(x,y,type,color,hp));
+      placed++;
+    }
+  }
+
+  _spawnInitialShapes(){
+    this._placeShapes(this._calcCount(this._step), this._calcMaxHp(this._step), SPAWN_Y_MIN, SPAWN_Y_MAX);
+  }
+
+  _spawnNewRow(){
+    const count = this._calcCount(this._step);
+    const maxHp = this._calcMaxHp(this._step);
+    const live  = this._shapes.filter(s=>!s.dead);
+    const lowestY = live.length ? Math.max(...live.map(s=>s.y)) : SPAWN_Y_MIN;
+    this._placeShapes(count, maxHp, Math.min(lowestY+MIN_SEP,SPAWN_Y_MAX), SPAWN_Y_MAX);
+  }
+
+  // ── FIRE ─────────────────────────────────────────────────────
+  _fireBall(){
+    this._aimGfx.clear();
+    this._gameState = 'shooting';
+    const total = this._ballsLeft;
+    const extra = this._shatterBoosterExtraBalls;
+    this._shatterBoosterExtraBalls = 0;
+    this._ballsLeft  = 0;
+    this._ballsToFire = 0;
+    for(let i=0; i<total; i++){
+      const isExtra = i >= total-extra;
+      this.time.delayedCall(i*500, ()=>this._launchBall(isExtra));
+    }
+  }
+
+  _launchBall(isExtra=false){
+    this._ballHits = 0;
+    const usePurple = isExtra || this._energyBoostActive || this._slowTimePowerUpStepsLeft>0;
+    const spr = this.add.image(SHOOTER_CX, BALL_START_Y, usePurple?'ball-purple':'ball')
+        .setDisplaySize(40,40).setDepth(10);
+    const trailGfx = this.add.graphics().setDepth(9);
+    const b = {
+      x:SHOOTER_CX, y:BALL_START_Y,
+      vx:Math.cos(this._aimAngle)*BASE_SPD,
+      vy:Math.sin(this._aimAngle)*BASE_SPD,
+      alive:true, isExtra,
+      _spr:spr, _trailGfx:trailGfx, _trail:[],
+    };
+    this._activeBalls.push(b);
+  }
+
+  // ── BALLS UPDATE ─────────────────────────────────────────────
+  _updateBalls(dt){
+    if(!this._activeBalls.length) return;
+
+    const snap = this._shapes.slice();
+    for(const b of this._activeBalls){
+      if(!b.alive) continue;
+
+      b._trail.push({x:b.x, y:b.y});
+      if(b._trail.length>9) b._trail.shift();
+
+      b.vy += (this._energyBoostActive ? 0.90 : GRAVITY) * dt;
       b.vx *= Math.pow(FRICTION, dt);
-      b.x += b.vx * dt;
-      b.y += b.vy * dt;
+      b.x  += b.vx*dt;
+      b.y  += b.vy*dt;
 
-      const wallDecay = energyBoostActive ? 0.95 : HIT_DECAY_WALL;
-      if(b.x - BALL_R < PLAY_LEFT)  { b.x = PLAY_LEFT  + BALL_R; b.vx =  Math.abs(b.vx) * wallDecay; }
-      if(b.x + BALL_R > PLAY_RIGHT) { b.x = PLAY_RIGHT - BALL_R; b.vx = -Math.abs(b.vx) * wallDecay; }
-      if(b.y - BALL_R < PLAY_TOP)   { b.y = PLAY_TOP   + BALL_R; b.vy =  Math.abs(b.vy) * wallDecay; }
+      const wd = this._energyBoostActive ? 0.95 : HIT_DECAY_WALL;
+      if(b.x-BALL_R<PLAY_LEFT)  { b.x=PLAY_LEFT +BALL_R; b.vx= Math.abs(b.vx)*wd; }
+      if(b.x+BALL_R>PLAY_RIGHT) { b.x=PLAY_RIGHT-BALL_R; b.vx=-Math.abs(b.vx)*wd; }
+      if(b.y-BALL_R<PLAY_TOP)   { b.y=PLAY_TOP  +BALL_R; b.vy= Math.abs(b.vy)*wd; }
+      if(b.y>PLAY_BOTTOM+20){
+        b.alive=false; b._spr.destroy(); b._trailGfx.destroy(); continue;
+      }
 
-      if(b.y > PLAY_BOTTOM + 20){ b.alive = false; return; }
-
-      for(let i = 0; i < shapeSnap.length; i++){
-        const s = shapeSnap[i];
+      // Shape collisions
+      for(const s of snap){
         if(s.dead) continue;
-        const d = dist(b.x, b.y, s.x, s.y);
-        if(d >= SHAPE_R + BALL_R) continue;
-        const nx = (b.x - s.x) / d, ny = (b.y - s.y) / d;
-        const dot = b.vx * nx + b.vy * ny;
-        b.vx -= 2 * dot * nx; b.vy -= 2 * dot * ny;
-        const push = (SHAPE_R + BALL_R - d) + 1;
-        b.x += nx * push; b.y += ny * push;
-        b.vx *= HIT_DECAY; b.vy *= HIT_DECAY;
-        s.hp--; s.flash = 1; s.shake = 1;
-        if(energyBoostActive){
-          if(collectCircleAnims) collectCircleAnims.push({x:s.x, y:s.y, elapsed:0});
-          if(collectSplashAnims){
-            const ix = s.x + nx * SHAPE_R, iy = s.y + ny * SHAPE_R;
-            collectSplashAnims.push({x:ix, y:iy, angle: Math.atan2(ny, nx) + Math.PI/2, elapsed:0});
-          }
+        const d = _dist(b.x,b.y,s.x,s.y);
+        if(d>=SHAPE_R+BALL_R) continue;
+        const nx=(b.x-s.x)/d, ny=(b.y-s.y)/d;
+        const dot=b.vx*nx+b.vy*ny;
+        b.vx-=2*dot*nx; b.vy-=2*dot*ny;
+        b.x+=nx*((SHAPE_R+BALL_R-d)+1); b.y+=ny*((SHAPE_R+BALL_R-d)+1);
+        b.vx*=HIT_DECAY; b.vy*=HIT_DECAY;
+        s.hp--; s.flash=1; s.shake=1;
+        const ix=s.x+nx*SHAPE_R, iy=s.y+ny*SHAPE_R;
+        const ang=Math.atan2(ny,nx)+Math.PI/2;
+        if(this._energyBoostActive){
+          this._vfx('cc', 25, s.x, s.y, 0,   50, null, null);
+          this._vfx('cs', 10, ix,  iy,  ang,  20, 94,  null);
         } else {
-          if(hitFlash) hitFlash.push({x:s.x, y:s.y, elapsed:0});
-          if(splashAnims){
-            const ix = s.x + nx * SHAPE_R, iy = s.y + ny * SHAPE_R;
-            splashAnims.push({x:ix, y:iy, angle: Math.atan2(ny, nx) + Math.PI/2, elapsed:0});
-          }
+          this._vfx('ic',  13, s.x, s.y, 0,   30, 286, 286);
+          this._vfx('is',  10, ix,  iy,  ang,  20,  94, 117);
         }
-        if(sparkleAnims) sparkleAnims.push({x:s.x, y:s.y, elapsed:0});
-        if(s.hp <= 0){ s.dead = true; totalScore += s.maxHp * 10; }
+        this._vfx('isp', 13, s.x, s.y, 0, 15, 107, 104);
+        if(s.hp<=0){ s.dead=true; this._totalScore+=s.maxHp*10; }
       }
 
-      if(energyCollectable && !energyCollectable.dead){
-        const dc = dist(b.x, b.y, energyCollectable.x, energyCollectable.y);
-        if(dc < SHAPE_R + BALL_R){
-          energyCollectable.dead = true;
-          collectiblePowerUpPending = true;
-          const nx = dc > 0 ? (b.x - energyCollectable.x) / dc : 1;
-          const ny = dc > 0 ? (b.y - energyCollectable.y) / dc : 0;
-          if(collectCircleAnims) collectCircleAnims.push({x:energyCollectable.x, y:energyCollectable.y, elapsed:0});
-          if(collectSplashAnims){
-            const ix = energyCollectable.x + nx * SHAPE_R, iy = energyCollectable.y + ny * SHAPE_R;
-            collectSplashAnims.push({x:ix, y:iy, angle: Math.atan2(ny, nx) + Math.PI/2, elapsed:0});
-          }
-        }
-      }
-      if(extraBallCollectable && !extraBallCollectable.dead){
-        const dc = dist(b.x, b.y, extraBallCollectable.x, extraBallCollectable.y);
-        if(dc < SHAPE_R + BALL_R){
-          extraBallCollectable.dead = true;
-          extraBallPowerUpPending = true;
-          const nx = dc > 0 ? (b.x - extraBallCollectable.x) / dc : 1;
-          const ny = dc > 0 ? (b.y - extraBallCollectable.y) / dc : 0;
-          if(collectCircleAnims) collectCircleAnims.push({x:extraBallCollectable.x, y:extraBallCollectable.y, elapsed:0});
-          if(collectSplashAnims){
-            const ix = extraBallCollectable.x + nx * SHAPE_R, iy = extraBallCollectable.y + ny * SHAPE_R;
-            collectSplashAnims.push({x:ix, y:iy, angle: Math.atan2(ny, nx) + Math.PI/2, elapsed:0});
-          }
-        }
-      }
-      if(slowTimeCollectable && !slowTimeCollectable.dead){
-        const dc = dist(b.x, b.y, slowTimeCollectable.x, slowTimeCollectable.y);
-        if(dc < SHAPE_R + BALL_R){
-          slowTimeCollectable.dead = true;
-          slowTimePowerUpPending = true;
-          const nx = dc > 0 ? (b.x - slowTimeCollectable.x) / dc : 1;
-          const ny = dc > 0 ? (b.y - slowTimeCollectable.y) / dc : 0;
-          if(collectCircleAnims) collectCircleAnims.push({x:slowTimeCollectable.x, y:slowTimeCollectable.y, elapsed:0});
-          if(collectSplashAnims){
-            const ix = slowTimeCollectable.x + nx * SHAPE_R, iy = slowTimeCollectable.y + ny * SHAPE_R;
-            collectSplashAnims.push({x:ix, y:iy, angle: Math.atan2(ny, nx) + Math.PI/2, elapsed:0});
-          }
-        }
-      }
-    });
+      // Collectable collisions
+      this._checkCollectableHit(b, '_energyCollectable',    '_collectiblePowerUpPending');
+      this._checkCollectableHit(b, '_extraBallCollectable', '_extraBallPowerUpPending');
+      this._checkCollectableHit(b, '_slowTimeCollectable',  '_slowTimePowerUpPending');
 
-    // Check if all balls are done AND no more queued
-    if(!shapesSliding && activeBalls.every(b => !b.alive) && ballsToFire === 0){
-      activeBalls = [];
-      endTurn();
+      // Sync sprite & trail
+      const usePurple = b.isExtra || this._energyBoostActive;
+      b._spr.setPosition(b.x,b.y).setTexture(usePurple?'ball-purple':'ball');
+      this._drawTrail(b);
+    }
+
+    this._activeBalls = this._activeBalls.filter(b=>b.alive);
+    if(!this._shapesSliding && !this._activeBalls.length && this._ballsToFire===0){
+      this._endTurn();
     }
   }
-}
 
-// ── SPEED BOOST (unused — momentum handled in update) ────────────
-function boostSpeed(){ }
-
-// ── END TURN ─────────────────────────────────────────────────────
-function endTurn(){
-  ball = null;
-  activeBalls = [];
-  energyBoostActive = false;
-  shapes = (shapes||[]).filter(s => !s.dead);
-  if(slowTimePowerUpPending){ slowTimePowerUpStepsLeft = 3; slowTimePowerUpPending = false; }
-  const isSlowTime = slowTimePowerUpStepsLeft > 0;
-  const moveAmt = (MOVE_UP + step * 6) * (isSlowTime ? 0.25 : 1);
-  if(isSlowTime) slowTimePowerUpStepsLeft--;
-  slideAmt = moveAmt;
-  slidedAmt = 0;
-  slideIsSlowTime = isSlowTime;
-  shapesSliding = true;
-}
-
-function finishEndTurn(){
-  const danger = shapes.filter(s => s.y < PLAY_TOP + SHAPE_R);
-  if(danger.length > 0){
-    dyingShapes = danger;
-    gameState = 'dying';
-    overTimer = 120;
-    return;
+  _checkCollectableHit(b, key, pendingKey){
+    const c = this[key];
+    if(!c || c.dead) return;
+    if(_dist(b.x,b.y,c.x,c.y) < SHAPE_R+BALL_R){
+      this._killCollectable(key);
+      this[pendingKey] = true;
+    }
   }
-  if(step + 1 === 3) spawnExtraBallCollectable();
-  spawnNewRow(); step++;
-  const spawnChance = step <= 4 ? 0.12 : 0.4;
-  if(!energyCollectable || energyCollectable.dead){
-    if(Math.random() < spawnChance) spawnEnergyCollectable();
-  }
-  if(step !== 3 && (!extraBallCollectable || extraBallCollectable.dead)){
-    if(Math.random() < spawnChance) spawnExtraBallCollectable();
-  }
-  if(!slowTimeCollectable || slowTimeCollectable.dead){
-    if(Math.random() < spawnChance) spawnSlowTimeCollectable();
-  }
-  ballsLeft = Math.max(1, Math.round(step * 0.75));
-  if(extraBallPowerUpPending){ ballsLeft++; extraBallPowerUpPending = false; }
-  ballsToFire = 0;
-  ballHits = 0;
-  if(collectiblePowerUpPending){ energyBoostActive = true; collectiblePowerUpPending = false; }
-  if(boosterCooldown > 0) boosterCooldown--;
-  try {
-    const pt = Date.now() - gameStartTime;
-    const checksum = (((totalScore * 1234567) ^ (pt / 1000 | 0)) >>> 0).toString(16);
-    gamee.updateScore(totalScore, pt, checksum);
-  } catch(e) {}
-  updateHeader(); gameState = 'idle';
-}
 
-
-// ── FLOAT SCORE ──────────────────────────────────────────────────
-
-
-// ── RENDER ───────────────────────────────────────────────────────
-function render(){
-  ctx.clearRect(0,0,W,H);
-
-  // 1. Full board as background
-  // Background — full canvas
-  if(bgImg.complete && bgImg.naturalWidth){
-    ctx.drawImage(bgImg, 0, 0, W, H);
+  _drawTrail(b){
+    const tr = b._trail;
+    b._trailGfx.clear();
+    if(tr.length<2) return;
+    const glowing = this._energyBoostActive || b.isExtra;
+    for(let i=1; i<tr.length; i++){
+      const t=i/tr.length, alpha=t*0.35, w=BALL_R*(1+t);
+      b._trailGfx.lineStyle(w*(glowing?1.8:1.1), glowing?0xdf80ff:0x7b3fce, alpha*(glowing?0.75:0.4));
+      b._trailGfx.strokeLineShape(new Phaser.Geom.Line(tr[i-1].x,tr[i-1].y,tr[i].x,tr[i].y));
+      b._trailGfx.lineStyle(w, glowing?0xbf40ff:0x7321b9, alpha*(glowing?1.0:0.7));
+      b._trailGfx.strokeLineShape(new Phaser.Geom.Line(tr[i-1].x,tr[i-1].y,tr[i].x,tr[i].y));
+    }
   }
-  // Board
-  if(boardImg.complete && boardImg.naturalWidth){
-    ctx.drawImage(boardImg, BOARD_X_PX, BOARD_Y_PX, BOARD_W_PX, BOARD_H_PX);
-  }
-  // Limit line — marks top of spawn area
-  if(limitLineImg.complete && limitLineImg.naturalWidth){
-    const lx = Math.round((W - 563) / 2);
-    ctx.drawImage(limitLineImg, lx, PLAY_TOP, 563, 8);
-  }
-  // Clip everything inside the board inner area
-  ctx.save();
-  ctx.beginPath();
-  ctx.roundRect(PLAY_LEFT, PLAY_TOP - 30, PLAY_RIGHT - PLAY_LEFT, PLAY_BOTTOM - PLAY_TOP + 30, 20);
-  ctx.clip();
 
-  // 2. Shapes — trail during slow-time slide
-  if(shapesSliding && slideIsSlowTime){
-    [[60, 0.04], [44, 0.08], [28, 0.13], [14, 0.18]].forEach(([offset, alpha]) => {
-      ctx.save();
-      ctx.globalAlpha = alpha;
-      (shapes||[]).forEach(s => { if(!s.dead) drawShape({...s, y: s.y + offset}); });
-      ctx.restore();
+  // ── VFX ──────────────────────────────────────────────────────
+  _vfx(prefix, frames, x, y, angle, durationTicks, w, h){
+    const img = this.add.image(x, y, `${prefix}-0`).setDepth(6).setMask(this._mask);
+    if(angle) img.setRotation(angle);
+    if(w && h) img.setDisplaySize(w, h);
+    let f=0;
+    this.time.addEvent({
+      delay: (durationTicks/frames)*16.67,
+      repeat: frames-2,
+      callback:()=>{ f++; if(f<frames) img.setTexture(`${prefix}-${f}`); else img.destroy(); }
     });
   }
-  if(slowTimePowerUpStepsLeft > 0){
-    (shapes||[]).forEach(s=>{ if(!s.dead) drawShape({...s, flash:0, shake:0}); });
-  }
-  (shapes||[]).forEach(s=>{ if(!s.dead) drawShape(s); });
-  drawEnergyCollectable();
-  drawExtraBallCollectable();
-  drawSlowTimeCollectable();
 
-  // 2b. Sparkle VFX — drawn over HP numbers
-  (sparkleAnims||[]).forEach(a=>{
-    const frameIdx = Math.min(12, Math.floor(a.elapsed * (13 / 15)));
-    const img = impactSparkleFrames[frameIdx];
-    if(img && img.complete && img.naturalWidth){
-      ctx.save();
-      ctx.globalAlpha = 0.8;
-      ctx.drawImage(img, a.x - 53.6, a.y - 51.8, 107.1, 103.5);
-      ctx.restore();
-    }
-  });
-
-  // 4. Hit impact VFX
-  (hitFlash||[]).forEach(h=>{
-    const frameIdx = Math.min(12, Math.floor(h.elapsed * (13 / 30)));
-    const img = impactCircleFrames[frameIdx];
-    if(img && img.complete && img.naturalWidth){
-      ctx.drawImage(img, h.x - 143, h.y - 143, 286, 286);
-    }
-  });
-
-  // 4b. Splash VFX — spawns at impact point, rotated toward ball departure
-  (splashAnims||[]).forEach(a=>{
-    const frameIdx = Math.min(9, Math.floor(a.elapsed * (10 / 20)));
-    const img = impactSplashFrames[frameIdx];
-    if(img && img.complete && img.naturalWidth){
-      ctx.save();
-      ctx.translate(a.x, a.y);
-      ctx.rotate(a.angle);
-      ctx.drawImage(img, -47, -117, 94, 117);
-      ctx.restore();
-    }
-  });
-
-  // 4c. Collect circle VFX
-  (collectCircleAnims||[]).forEach(a=>{
-    const frameIdx = Math.min(24, Math.floor(a.elapsed * (25 / 50)));
-    const img = collectCircleFrames[frameIdx];
-    if(img && img.complete && img.naturalWidth){
-      ctx.drawImage(img, a.x - img.naturalWidth/2, a.y - img.naturalHeight/2, img.naturalWidth, img.naturalHeight);
-    }
-  });
-
-  // 4d. Collect splash VFX
-  (collectSplashAnims||[]).forEach(a=>{
-    const frameIdx = Math.min(9, Math.floor(a.elapsed * (10 / 20)));
-    const img = collectSplashFrames[frameIdx];
-    if(img && img.complete && img.naturalWidth){
-      ctx.save();
-      ctx.translate(a.x, a.y);
-      ctx.rotate(a.angle);
-      ctx.drawImage(img, -img.naturalWidth/2, -img.naturalHeight, img.naturalWidth, img.naturalHeight);
-      ctx.restore();
-    }
-  });
-
-
-  ctx.restore(); // end board clip
-
-  // 6. All active balls — rendered LAST so always on top
-  (activeBalls||[]).filter(b=>b.alive).forEach(b=>{
-    const glowActive = energyBoostActive || b.isExtra;
-    // Thick glowing tube trail
-    const tr = b.trail;
-    if(tr.length > 1){
-      for(let i = 1; i < tr.length; i++){
-        const t = i / tr.length;
-        const alpha = t * 0.35;
-        const w = BALL_R * (1.0 + t * 1.0);
-        ctx.save();
-        // Outer glow
-        ctx.globalAlpha = alpha * (glowActive ? 0.75 : 0.4);
-        ctx.strokeStyle = glowActive ? '#df80ff' : '#7b3fce';
-        ctx.lineWidth = w * (glowActive ? 1.8 : 1.1);
-        ctx.lineCap = 'round';
-        ctx.shadowColor = glowActive ? '#df80ff' : '#7b3fce';
-        ctx.shadowBlur = glowActive ? 28 : 9;
-        ctx.beginPath();
-        ctx.moveTo(tr[i-1].x, tr[i-1].y);
-        ctx.lineTo(tr[i].x, tr[i].y);
-        ctx.stroke();
-        // Inner core
-        ctx.globalAlpha = alpha * (glowActive ? 1.0 : 0.7);
-        ctx.strokeStyle = glowActive ? '#bf40ff' : '#7321b9';
-        ctx.lineWidth = w;
-        ctx.shadowBlur = glowActive ? 14 : 4;
-        ctx.beginPath();
-        ctx.moveTo(tr[i-1].x, tr[i-1].y);
-        ctx.lineTo(tr[i].x, tr[i].y);
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-    ctx.save();
-    const usePurple = b.isExtra || energyBoostActive || slowTimePowerUpStepsLeft > 0;
-    const activeBallImg = usePurple ? ballPurpleImg : ballImg;
-    if(glowActive){ ctx.shadowColor = '#bf40ff'; ctx.shadowBlur = 24; }
-    if(activeBallImg.complete && activeBallImg.naturalWidth){
-      ctx.drawImage(activeBallImg, b.x-20, b.y-20, 40, 40);
-    } else {
-      ctx.beginPath();ctx.arc(b.x,b.y,BALL_R,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
-    }
-    ctx.restore();
-  });
-  if(gameState==='idle'||gameState==='aiming'){
-    // Resting ball in the notch — drawn on top of notch overlay
-    ctx.save();
-    const anyPowerActive2 = energyBoostActive || slowTimePowerUpStepsLeft > 0;
-    const restingBallImg = anyPowerActive2 ? ballPurpleImg : ballImg;
-    if(energyBoostActive){ ctx.shadowColor = '#bf40ff'; ctx.shadowBlur = 24; }
-    if(restingBallImg.complete && restingBallImg.naturalWidth){
-      ctx.drawImage(restingBallImg, SHOOTER_X-20, SHOOTER_Y-20, 40, 40);
-    } else {
-      ctx.beginPath();ctx.arc(SHOOTER_X,SHOOTER_Y,BALL_R,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();
-    }
-    ctx.restore();
-  }
-
-  // 7. HUD — drawn last so always visible
-  ctx.save();
-  ctx.textBaseline = 'middle';
-
-  ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
-  ctx.textAlign = 'left';
-  ctx.lineJoin = 'round';
-
-  // STEP label
-  ctx.font = "600 27px 'Oxanium',sans-serif";
-  ctx.lineJoin = 'round'; ctx.lineWidth = 8; ctx.strokeStyle = '#4d0181';
-  ctx.strokeText('STEP', STEP_LBL_X, STEP_LBL_Y);
-  ctx.fillStyle = '#e9cbff';
-  ctx.fillText('STEP', STEP_LBL_X, STEP_LBL_Y);
-
-  // Step number
-  ctx.font = "600 32px 'Oxanium',sans-serif";
-  ctx.lineJoin = 'round'; ctx.lineWidth = 8; ctx.strokeStyle = '#4d0181';
-  const stepStr = String(step).padStart(2,'0');
-  ctx.strokeText(stepStr, STEP_LBL_X + 72, STEP_LBL_Y);
-  ctx.fillStyle = '#c479fd';
-  ctx.fillText(stepStr, STEP_LBL_X + 72, STEP_LBL_Y);
-
-  // Ball counter — 'x' and number drawn separately at different sizes
-  const bx = SHOOTER_CX + 35;
-  const by = SHOOTER_CY - 10;
-  const ballNum = String(ballsLeft !== undefined ? ballsLeft : 3);
-  ctx.textBaseline = 'bottom';
-  ctx.lineJoin = 'round'; ctx.lineWidth = 8; ctx.strokeStyle = '#210041';
-  ctx.font = "600 18px 'Oxanium',sans-serif";
-  ctx.strokeText('x', bx, by);
-  ctx.fillStyle = '#e0edf6';
-  ctx.fillText('x', bx, by);
-  const xW = ctx.measureText('x').width;
-  ctx.font = "600 25px 'Oxanium',sans-serif";
-  ctx.strokeText(ballNum, bx + xW + 2, by);
-  ctx.fillText(ballNum, bx + xW + 2, by);
-
-  if(ballSparkleAnim){
-    const frameIdx = Math.min(17, Math.floor(ballSparkleAnim.elapsed * 18 / 36));
-    const simg = ballSparkleFrames[frameIdx];
-    if(simg && simg.complete && simg.naturalWidth){
-      const sw = simg.naturalWidth * 1.5, sh = simg.naturalHeight * 1.5;
-      const cx = SHOOTER_CX + 50, cy = SHOOTER_CY - 22;
-      ctx.drawImage(simg, cx - sw/2, cy - sh/2, sw, sh);
-    }
-  }
-
-  ctx.restore();
-
-  // 8. Booster buttons
-  drawBoosters();
-}
-
-function drawBoosters(){
-  const half = BOOSTER_BTN / 2;
-  const onCooldown = boosterCooldown > 0;
-  for(const b of BOOSTERS){
-    const bx = b.cx - half, by = b.cy - half;
-    const btnImg = b.type === pressedBooster ? boosterBtnPressedImg : boosterBtnImg;
-    if(btnImg.complete && btnImg.naturalWidth)
-      ctx.drawImage(btnImg, bx, by, BOOSTER_BTN, BOOSTER_BTN);
-    const pressed = b.type === pressedBooster;
-    const ic = (pressed && b.pressedIcon) ? b.pressedIcon() : b.icon();
-    const iconOffset = pressed ? 6 : 0;
-    if(ic.complete && ic.naturalWidth)
-      ctx.drawImage(ic, b.cx - b.iw/2, b.cy - b.ih/2 + iconOffset, b.iw, b.ih);
-    if(boosterTagAddImg.complete && boosterTagAddImg.naturalWidth){
-      const tx = bx + BOOSTER_BTN - boosterTagAddImg.naturalWidth + 4;
-      const ty = by - 4;
-      ctx.drawImage(boosterTagAddImg, tx, ty, boosterTagAddImg.naturalWidth, boosterTagAddImg.naturalHeight);
-    }
-    if(onCooldown && btnImg.complete && btnImg.naturalWidth){
-      const tagW = (boosterTagAddImg.complete && boosterTagAddImg.naturalWidth) ? boosterTagAddImg.naturalWidth : 0;
-      const tagH = (boosterTagAddImg.complete && boosterTagAddImg.naturalWidth) ? boosterTagAddImg.naturalHeight : 0;
-      const ocW = BOOSTER_BTN + 4, ocH = BOOSTER_BTN + 4;
-      const oc = new OffscreenCanvas(ocW, ocH);
-      const octx = oc.getContext('2d');
-      octx.drawImage(btnImg, 0, 4, BOOSTER_BTN, BOOSTER_BTN);
-      if(tagW > 0) octx.drawImage(boosterTagAddImg, BOOSTER_BTN - tagW + 4, 0, tagW, tagH);
-      octx.globalCompositeOperation = 'source-in';
-      octx.globalAlpha = 0.4;
-      octx.fillStyle = '#000';
-      octx.fillRect(0, 0, ocW, ocH);
-      ctx.drawImage(oc, bx, by - 4);
-    }
-  }
-}
-
-function drawExtraBallCollectable(){
-  const c = extraBallCollectable;
-  if(!c || c.dead || c.scale <= 0.01) return;
-  if(!collectBaseImg.complete || !collectBaseImg.naturalWidth) return;
-  const pulse = 0.95 + 0.05 * Math.sin(Date.now() / 400);
-  const s = c.scale * pulse;
-  if(collectGlowImg.complete && collectGlowImg.naturalWidth){
-    const gw = collectGlowImg.naturalWidth, gh = collectGlowImg.naturalHeight;
-    ctx.save();
-    ctx.globalAlpha = 0.6 + 0.4 * Math.sin(Date.now() / 400);
-    ctx.translate(c.x, c.y);
-    ctx.scale(s, s);
-    ctx.drawImage(collectGlowImg, -gw/2, -gh/2, gw, gh);
-    ctx.restore();
-  }
-  ctx.save();
-  ctx.translate(c.x, c.y);
-  ctx.rotate(c.angle);
-  ctx.scale(s, s);
-  const bw = collectBaseImg.naturalWidth, bh = collectBaseImg.naturalHeight;
-  ctx.drawImage(collectBaseImg, -bw/2, -bh/2, bw, bh);
-  ctx.restore();
-  if(collectExtraImg.complete && collectExtraImg.naturalWidth){
-    const ew = collectExtraImg.naturalWidth, eh = collectExtraImg.naturalHeight;
-    ctx.save();
-    ctx.translate(c.x, c.y);
-    ctx.scale(s, s);
-    ctx.drawImage(collectExtraImg, -ew/2, -eh/2, ew, eh);
-    ctx.restore();
-  }
-}
-function drawEnergyCollectable(){
-  const c = energyCollectable;
-  if(!c || c.dead || c.scale <= 0.01) return;
-  if(!collectBaseImg.complete || !collectBaseImg.naturalWidth) return;
-  const pulse = 0.95 + 0.05 * Math.sin(Date.now() / 400);
-  const s = c.scale * pulse;
-  if(collectGlowImg.complete && collectGlowImg.naturalWidth){
-    const gw = collectGlowImg.naturalWidth, gh = collectGlowImg.naturalHeight;
-    ctx.save();
-    ctx.globalAlpha = 0.6 + 0.4 * Math.sin(Date.now() / 400);
-    ctx.translate(c.x, c.y);
-    ctx.scale(s, s);
-    ctx.drawImage(collectGlowImg, -gw/2, -gh/2, gw, gh);
-    ctx.restore();
-  }
-  ctx.save();
-  ctx.translate(c.x, c.y);
-  ctx.rotate(c.angle);
-  ctx.scale(s, s);
-  const bw = collectBaseImg.naturalWidth, bh = collectBaseImg.naturalHeight;
-  ctx.drawImage(collectBaseImg, -bw/2, -bh/2, bw, bh);
-  ctx.restore();
-  if(collectEnergyImg.complete && collectEnergyImg.naturalWidth){
-    const ew = collectEnergyImg.naturalWidth, eh = collectEnergyImg.naturalHeight;
-    ctx.save();
-    ctx.translate(c.x, c.y);
-    ctx.scale(s, s);
-    ctx.drawImage(collectEnergyImg, -ew/2, -eh/2, ew, eh);
-    ctx.restore();
-  }
-}
-function drawSlowTimeCollectable(){
-  const c = slowTimeCollectable;
-  if(!c || c.dead || c.scale <= 0.01) return;
-  if(!collectBaseImg.complete || !collectBaseImg.naturalWidth) return;
-  const pulse = 0.95 + 0.05 * Math.sin(Date.now() / 400);
-  const s = c.scale * pulse;
-  if(collectGlowImg.complete && collectGlowImg.naturalWidth){
-    const gw = collectGlowImg.naturalWidth, gh = collectGlowImg.naturalHeight;
-    ctx.save();
-    ctx.globalAlpha = 0.6 + 0.4 * Math.sin(Date.now() / 400);
-    ctx.translate(c.x, c.y);
-    ctx.scale(s, s);
-    ctx.drawImage(collectGlowImg, -gw/2, -gh/2, gw, gh);
-    ctx.restore();
-  }
-  ctx.save();
-  ctx.translate(c.x, c.y);
-  ctx.rotate(c.angle);
-  ctx.scale(s, s);
-  const bw = collectBaseImg.naturalWidth, bh = collectBaseImg.naturalHeight;
-  ctx.drawImage(collectBaseImg, -bw/2, -bh/2, bw, bh);
-  ctx.restore();
-  if(collectTimeImg.complete && collectTimeImg.naturalWidth){
-    const tw = collectTimeImg.naturalWidth, th = collectTimeImg.naturalHeight;
-    ctx.save();
-    ctx.translate(c.x, c.y);
-    ctx.scale(s, s);
-    ctx.drawImage(collectTimeImg, -tw/2, -th/2, tw, th);
-    ctx.restore();
-  }
-}
-
-// ── DRAW SHAPE ───────────────────────────────────────────────────
-function drawShape(s){
-  if(s.scale<=0.01) return;
-  ctx.save();
-  const shakeAmt = (s.shake || 0) * 6;
-  const shakeX = shakeAmt > 0 ? (Math.random() - 0.5) * shakeAmt * 2 : 0;
-  const shakeY = shakeAmt > 0 ? (Math.random() - 0.5) * shakeAmt * 2 : 0;
-  ctx.translate(s.x + shakeX, s.y + shakeY);
-  ctx.scale(s.scale, s.scale);
-  if(slowTimePowerUpStepsLeft > 0){
-    ctx.shadowColor = '#b141fc';
-    ctx.shadowBlur = 45;
-  }
-  const fl = s.flash;
-
-  if(s.type === 'circle'){
-    const hpKey = Math.max(1, Math.min(5, s.hp));
-    const frame = CIRCLE_FRAMES[hpKey];
-    const img   = circleImgs[hpKey];
-    const size  = 133;
-
-    ctx.save();
-    ctx.rotate(s.angle || 0);
-    if(img && img.complete && img.naturalWidth){
-      if(fl > 0.4) ctx.globalAlpha = 0.82;
-      ctx.drawImage(img, -size/2, -size/2, size, size);
-      ctx.globalAlpha = 1;
-    } else {
-      // fallback plain circle
-      ctx.beginPath(); ctx.arc(0, 0, SHAPE_R, 0, Math.PI*2);
-      ctx.fillStyle = frame.glow + '44'; ctx.fill();
-      ctx.strokeStyle = frame.glow; ctx.lineWidth = 4; ctx.stroke();
-    }
-    ctx.restore();
-
-  } else if(s.type === 'square'){
-    const hpKey = Math.max(1, Math.min(5, s.hp));
-    const frame = SQUARE_FRAMES[hpKey];
-    const img   = squareImgs[hpKey];
-    const size  = 125;
-    ctx.save();
-    ctx.rotate(s.angle || 0);
-    if(img && img.complete && img.naturalWidth){
-      if(fl > 0.4) ctx.globalAlpha = 0.82;
-      ctx.drawImage(img, -size/2, -size/2, size, size);
-      ctx.globalAlpha = 1;
-    } else {
-      const rs = SHAPE_R * 0.88;
-      ctx.beginPath();ctx.moveTo(rs,0);ctx.lineTo(0,-rs);ctx.lineTo(-rs,0);ctx.lineTo(0,rs);ctx.closePath();
-      ctx.fillStyle = frame.glow + '44'; ctx.fill();
-      ctx.strokeStyle = frame.glow; ctx.lineWidth = 4; ctx.stroke();
-    }
-    ctx.restore();
-
-  } else if(s.type === 'triangle'){
-    const hpKey = Math.max(1, Math.min(5, s.hp));
-    const frame = TRIANGLE_FRAMES[hpKey];
-    const img   = triangleImgs[hpKey];
-    const tw = 139, th = 129;
-    const HP_FONT_TRI = {5:40, 4:34, 3:34, 2:32, 1:32};
-    const HP_OUT_TRI  = {5:'#002e5a', 4:'#820606', 3:'#182900', 2:'#004437', 1:'#640053'};
-    const hpSz = s.hp > 5 ? 28 : HP_FONT_TRI[hpKey];
-
-    ctx.save();
-    ctx.rotate(s.angle || 0);
-    if(img && img.complete && img.naturalWidth){
-      if(fl > 0.4) ctx.globalAlpha = 0.82;
-      ctx.drawImage(img, -70, -75, tw, th);
-      ctx.globalAlpha = 1;
-    } else {
-      const rs = SHAPE_R * 0.88;
-      ctx.beginPath(); ctx.moveTo(0,-rs); ctx.lineTo(rs,rs); ctx.lineTo(-rs,rs); ctx.closePath();
-      ctx.fillStyle = frame.glow + '44'; ctx.fill();
-      ctx.strokeStyle = frame.glow; ctx.lineWidth = 4; ctx.stroke();
-    }
-    // Counter-rotate so the number visually stays upright while moving with the triangle
-    ctx.rotate(-(s.angle || 0));
-    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
-    ctx.font = `600 ${hpSz}px 'Oxanium',sans-serif`;
-    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
-    const mt = ctx.measureText(String(s.hp));
-    const textYt = mt.actualBoundingBoxAscent - (mt.actualBoundingBoxAscent + mt.actualBoundingBoxDescent) / 2;
-    ctx.lineJoin = 'round'; ctx.lineWidth = hpSz * 0.15;
-    ctx.strokeStyle = HP_OUT_TRI[hpKey];
-    ctx.strokeText(s.hp, 0, textYt);
-    ctx.fillStyle = '#fff';
-    ctx.fillText(s.hp, 0, textYt);
-    ctx.restore();
-
-  }
-
-  // HP number for circle and square
-  if(s.type !== 'triangle'){
-    const HP_FONT_PX = {5:40, 4:34, 3:34, 2:32, 1:32};
-    const HP_OUTLINE = {5:'#002e5a', 4:'#820606', 3:'#182900', 2:'#004437', 1:'#640053'};
-    const hpKey2 = Math.max(1, Math.min(5, s.hp));
-    const hpFontSize = s.hp > 5 ? 28 : HP_FONT_PX[hpKey2];
-    ctx.shadowColor = 'transparent'; ctx.shadowBlur = 0;
-    ctx.font = `600 ${hpFontSize}px 'Oxanium',sans-serif`;
-    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
-    const m = ctx.measureText(String(s.hp));
-    const textY = m.actualBoundingBoxAscent - (m.actualBoundingBoxAscent + m.actualBoundingBoxDescent) / 2;
-    ctx.lineJoin = 'round'; ctx.lineWidth = hpFontSize * 0.15;
-    ctx.strokeStyle = HP_OUTLINE[hpKey2];
-    ctx.strokeText(s.hp, 0, textY);
-    ctx.fillStyle = '#fff';
-    ctx.fillText(s.hp, 0, textY);
-  }
-  ctx.restore();
-}
-
-function lighten(hex,amt){
-  const r=Math.min(255,parseInt(hex.slice(1,3),16)+Math.round(amt*120));
-  const g=Math.min(255,parseInt(hex.slice(3,5),16)+Math.round(amt*80));
-  const b=Math.min(255,parseInt(hex.slice(5,7),16)+Math.round(amt*180));
-  return `rgb(${r},${g},${b})`;
-}
-
-// ── BOOSTERS (button-activated) ───────────────────────────────────
-function useBooster(type){
-  if(boosterCooldown > 0) return;
-  if(type==='slow'){
-    slowTimePowerUpPending = true;
-  } else if(type==='shatter'){
-    if(gameState === 'shooting'){ launchBall(true); } else { ballsLeft++; shatterBoosterExtraBalls++; }
-    ballSparkleAnim = {elapsed: 0};
-  } else if(type==='reset'){
-    energyBoostActive = true;
-  }
-  boosterCooldown = 3;
-  try { gamee.logEvent("booster_used", type); } catch(e) {}
-}
-
-function dist(ax,ay,bx,by){ return Math.hypot(ax-bx,ay-by); }
-
-// ── GAMEE ADVANCED HELPERS ────────────────────────────────────────
-function preloadRewardedVideo() {
-  try {
-    gamee.loadRewardedVideo(function(error, data) {
-      isVideoReady = !!(data && data.videoLoaded);
-      const btn = document.getElementById('gamee-ad-btn');
-      if(btn) btn.style.display = isVideoReady ? '' : 'none';
-    });
-  } catch(e) {}
-}
-
-function ensureRewardedAdButton() {
-  let btn = document.getElementById('gamee-ad-btn');
-  if(!btn) {
-    btn = document.createElement('button');
-    btn.id = 'gamee-ad-btn';
-    btn.textContent = 'Watch Ad — Extra Ball';
-    btn.style.cssText = 'display:none;margin-top:16px;padding:12px 28px;font-size:18px;font-family:Oxanium,sans-serif;background:#7b2fde;color:#fff;border:none;border-radius:10px;cursor:pointer;letter-spacing:0.03em;';
-    btn.addEventListener('click', offerRewardedAd);
-    const over = document.getElementById('screen-over');
-    if(over) over.appendChild(btn);
-  }
-  btn.style.display = isVideoReady ? '' : 'none';
-}
-
-function offerRewardedAd() {
-  if(!isVideoReady) return;
-  try {
-    gamee.showRewardedVideo(function(error, data) {
-      isVideoReady = false;
-      const btn = document.getElementById('gamee-ad-btn');
-      if(btn) btn.style.display = 'none';
-      if(data && data.videoPlayed) {
-        ballsLeft = 3;
-        gameState = 'idle';
-        hide('screen-over');
-        preloadRewardedVideo();
-        if(!animId) { lastTime = 0; animId = requestAnimationFrame(loop); }
-      }
-    });
-  } catch(e) {}
-}
-
-function saveProgress() {
-  if(totalScore > bestScore) bestScore = totalScore;
-  if(step > bestStep) bestStep = step;
-  try { gamee.gameSave(JSON.stringify({ bestScore, bestStep })); } catch(e) {}
-}
-
-// ── GAMEE ─────────────────────────────────────────────────────────
-try {
-  gamee.gameInit("FullScreen", {}, ["platformExtraLife", "saveState", "logEvents", "rewardedAds"], function(error, data) {
-    if(error) console.warn("GAMEE init:", error);
-    if(data && data.saveState) {
-      try {
-        const saved = JSON.parse(data.saveState);
-        if(saved.bestScore) bestScore = saved.bestScore;
-        if(saved.bestStep)  bestStep  = saved.bestStep;
-      } catch(e) {}
-    }
-    gamee.gameLoadingProgress(100);
-    preloadRewardedVideo();
-    show('screen-start');
-  });
-  gamee.emitter.addEventListener("start", function(event) {
-    startGame();
-    event.detail.callback();
-  });
-  gamee.emitter.addEventListener("useExtraLife", function(event) {
-    if(gameState === 'shooting'){ launchBall(true); }
-    else { ballsLeft++; shatterBoosterExtraBalls++; }
-    event.detail.callback();
-  });
-  gamee.emitter.addEventListener("submit", function(event) {
-    if(gameState !== 'over') {
-      gameState = 'over';
-      document.getElementById('over-step').textContent = 'Step ' + String(step).padStart(2,'0');
-      show('screen-over');
-      saveProgress();
-      ensureRewardedAdButton();
+  // ── DYING / GAME OVER ────────────────────────────────────────
+  _updateDying(dt){
+    if(this._gameState!=='dying') return;
+    this._overTimer -= dt;
+    if(this._overTimer<=0){
+      this._gameState='over';
+      document.getElementById('over-step').textContent='Step '+String(this._step).padStart(2,'0');
+      document.getElementById('screen-over').classList.add('show');
+      this._saveProgress();
+      try { gamee.logEvent("game_over",this._totalScore+','+this._step); } catch(e) {}
+      this._ensureRewardedAdButton();
       try { gamee.gameOver(); } catch(e) {}
     }
-    event.detail.callback();
-  });
-  gamee.emitter.addEventListener("pause", function(event) {
-    gamePaused = true;
-    if(animId) { cancelAnimationFrame(animId); animId = null; }
-    event.detail.callback();
-  });
-  gamee.emitter.addEventListener("resume", function(event) {
-    if(gamePaused) {
-      gamePaused = false;
-      lastTime = 0;
-      animId = requestAnimationFrame(loop);
+  }
+
+  // ── END TURN ─────────────────────────────────────────────────
+  _endTurn(){
+    this._destroyAllBalls();
+    this._energyBoostActive = false;
+    if(this._slowTimePowerUpPending){ this._slowTimePowerUpStepsLeft=3; this._slowTimePowerUpPending=false; }
+    const slow = this._slowTimePowerUpStepsLeft>0;
+    const amt  = (MOVE_UP + this._step*6) * (slow?0.25:1);
+    if(slow) this._slowTimePowerUpStepsLeft--;
+    this._slideAmt       = amt;
+    this._slidedAmt      = 0;
+    this._slideIsSlowTime = slow;
+    this._shapesSliding  = true;
+  }
+
+  _finishEndTurn(){
+    const danger = this._shapes.filter(s=>s.y<PLAY_TOP+SHAPE_R);
+    if(danger.length){
+      this._dyingShapes = danger;
+      this._gameState   = 'dying';
+      this._overTimer   = 120;
+      return;
     }
-    event.detail.callback();
-  });
-} catch(e) {
-  show('screen-start');
+    if(this._step+1===3) this._spawnExtraBallCollectable();
+    this._spawnNewRow(); this._step++;
+    const chance = this._step<=4 ? 0.12 : 0.4;
+    if(!this._energyCollectable    || this._energyCollectable.dead)    if(Math.random()<chance) this._spawnEnergyCollectable();
+    if(this._step!==3 && (!this._extraBallCollectable || this._extraBallCollectable.dead)) if(Math.random()<chance) this._spawnExtraBallCollectable();
+    if(!this._slowTimeCollectable  || this._slowTimeCollectable.dead)  if(Math.random()<chance) this._spawnSlowTimeCollectable();
+    this._ballsLeft = Math.max(1, Math.round(this._step*0.75));
+    if(this._extraBallPowerUpPending){ this._ballsLeft++; this._extraBallPowerUpPending=false; }
+    this._ballsToFire = 0;
+    this._ballHits    = 0;
+    if(this._collectiblePowerUpPending){ this._energyBoostActive=true; this._collectiblePowerUpPending=false; }
+    if(this._boosterCooldown>0) this._boosterCooldown--;
+    try {
+      const pt=Date.now()-this._gameStartTime;
+      const cs=(((this._totalScore*1234567)^(pt/1000|0))>>>0).toString(16);
+      gamee.updateScore(this._totalScore,pt,cs);
+    } catch(e) {}
+    this._gameState='idle';
+  }
+
+  // ── BOOSTERS (button-activated) ───────────────────────────────
+  _useBooster(type){
+    if(this._boosterCooldown>0) return;
+    if(type==='slow'){
+      this._slowTimePowerUpPending=true;
+    } else if(type==='shatter'){
+      if(this._gameState==='shooting') this._launchBall(true);
+      else { this._ballsLeft++; this._shatterBoosterExtraBalls++; }
+      this._sparkleElapsed=0;
+    } else if(type==='reset'){
+      this._energyBoostActive=true;
+    }
+    this._boosterCooldown=3;
+    try { gamee.logEvent("booster_used",type); } catch(e) {}
+  }
+
+  // ── HUD UPDATE ────────────────────────────────────────────────
+  _updateHUD(){
+    this._stepNum.setText(String(this._step).padStart(2,'0'));
+    this._ballN.setText(String(this._ballsLeft));
+    this._ballN.setX(this._ballX.x + this._ballX.width + 2);
+  }
+
+  _updateSparkle(dt){
+    if(this._sparkleElapsed<0){ this._sparkleImg.setVisible(false); return; }
+    this._sparkleElapsed+=dt;
+    if(this._sparkleElapsed>=36){ this._sparkleElapsed=-1; this._sparkleImg.setVisible(false); return; }
+    const fi=Math.min(17,Math.floor(this._sparkleElapsed*18/36));
+    this._sparkleImg.setTexture(`sp-${fi}`).setVisible(true);
+  }
+
+  _updateRestingBall(){
+    const idle = this._gameState==='idle'||this._gameState==='aiming';
+    const purple = this._energyBoostActive||this._slowTimePowerUpStepsLeft>0;
+    this._restingBall.setVisible(idle).setTexture(purple?'ball-purple':'ball');
+  }
+
+  // ── CLEANUP HELPERS ───────────────────────────────────────────
+  _destroyAllShapes(){
+    for(const s of this._shapes){
+      if(s._spr) s._spr.destroy();
+      if(s._txt) s._txt.destroy();
+    }
+    this._shapes=[];
+  }
+
+  _destroyAllBalls(){
+    for(const b of this._activeBalls){
+      b.alive=false;
+      if(b._spr) b._spr.destroy();
+      if(b._trailGfx) b._trailGfx.destroy();
+    }
+    this._activeBalls=[];
+  }
+
+  // ── GAMEE SDK ─────────────────────────────────────────────────
+  _saveProgress(){
+    if(this._totalScore>this._bestScore) this._bestScore=this._totalScore;
+    if(this._step>this._bestStep)        this._bestStep=this._step;
+    try { gamee.gameSave(JSON.stringify({bestScore:this._bestScore,bestStep:this._bestStep})); } catch(e) {}
+  }
+
+  _preloadRewardedVideo(){
+    try {
+      gamee.loadRewardedVideo((err,data)=>{
+        this._isVideoReady=!!(data&&data.videoLoaded);
+        const btn=document.getElementById('gamee-ad-btn');
+        if(btn) btn.style.display=this._isVideoReady?'':'none';
+      });
+    } catch(e) {}
+  }
+
+  _ensureRewardedAdButton(){
+    let btn=document.getElementById('gamee-ad-btn');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='gamee-ad-btn';
+      btn.textContent='Watch Ad — Extra Ball';
+      btn.style.cssText='display:none;margin-top:16px;padding:12px 28px;font-size:18px;font-family:Oxanium,sans-serif;background:#7b2fde;color:#fff;border:none;border-radius:10px;cursor:pointer;';
+      btn.addEventListener('click',()=>this._offerRewardedAd());
+      const over=document.getElementById('screen-over');
+      if(over) over.appendChild(btn);
+    }
+    btn.style.display=this._isVideoReady?'':'none';
+  }
+
+  _offerRewardedAd(){
+    if(!this._isVideoReady) return;
+    try {
+      gamee.showRewardedVideo((err,data)=>{
+        this._isVideoReady=false;
+        const btn=document.getElementById('gamee-ad-btn');
+        if(btn) btn.style.display='none';
+        if(data&&data.videoPlayed){
+          this._ballsLeft=3; this._gameState='idle';
+          document.getElementById('screen-over').classList.remove('show');
+          this._preloadRewardedVideo();
+        }
+      });
+    } catch(e) {}
+  }
+
+  _initGamee(){
+    try {
+      gamee.gameInit("FullScreen",{},["platformExtraLife","saveState","logEvents","rewardedAds"],(err,data)=>{
+        if(err) console.warn("GAMEE init:",err);
+        if(data&&data.saveState){
+          try {
+            const sv=JSON.parse(data.saveState);
+            if(sv.bestScore) this._bestScore=sv.bestScore;
+            if(sv.bestStep)  this._bestStep=sv.bestStep;
+          } catch(e) {}
+        }
+        gamee.gameLoadingProgress(100);
+        this._preloadRewardedVideo();
+        document.getElementById('screen-start').classList.add('show');
+      });
+      gamee.emitter.addEventListener("start",e=>{ this._startGame(); e.detail.callback(); });
+      gamee.emitter.addEventListener("useExtraLife",e=>{
+        if(this._gameState==='shooting') this._launchBall(true);
+        else { this._ballsLeft++; this._shatterBoosterExtraBalls++; }
+        e.detail.callback();
+      });
+      gamee.emitter.addEventListener("submit",e=>{
+        if(this._gameState!=='over'){
+          this._gameState='over';
+          document.getElementById('over-step').textContent='Step '+String(this._step).padStart(2,'0');
+          document.getElementById('screen-over').classList.add('show');
+          this._saveProgress(); this._ensureRewardedAdButton();
+          try { gamee.gameOver(); } catch(e2) {}
+        }
+        e.detail.callback();
+      });
+      gamee.emitter.addEventListener("pause",e=>{ this._gamePaused=true;  this.scene.pause();  e.detail.callback(); });
+      gamee.emitter.addEventListener("resume",e=>{ this._gamePaused=false; this.scene.resume(); e.detail.callback(); });
+    } catch(e) {
+      document.getElementById('screen-start').classList.add('show');
+    }
+  }
 }
-animId=requestAnimationFrame(loop);
 
-
+// ── PHASER CONFIG ────────────────────────────────────────────────
+new Phaser.Game({
+  type: Phaser.CANVAS,
+  width: W, height: H,
+  canvas: document.getElementById('canvas'),
+  backgroundColor: '#000000',
+  scene: [GameScene],
+  render: { antialias: true },
+});
